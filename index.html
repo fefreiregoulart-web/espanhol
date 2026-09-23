@@ -519,7 +519,7 @@
   </div>
 
   <script>
-    // BANCO DE DADOS DINÂMICO (5 perguntas por conteúdo - 5 tópicos)
+    // BANCO DE DADOS DINÂMICO COMPLETAMENTE EXPANDIDO
     const questionPool = {
       imperfecto: [
         { type: "choice", q: "Qual é a forma correta do verbo 'Hablar' para Yo no Pretérito Imperfecto?", options: ["habló", "hablaba", "hablé"], correct: "hablaba", exp: "Terminações -AR no imperfecto usam -aba." },
@@ -543,11 +543,53 @@
         { type: "choice", q: "Ana ________ (ver) la tele cuando su madre llegó.", options: ["vio", "veía", "vía"], correct: "veía", exp: "Ação em andamento (Imperfecto) interrompida pela chegada (Indefinido)." }
       ],
       vocabulario: [
-        { type: "choice", q: "O que significa a palavra 'Pantalla' em espanhol?", options: ["Tecido para roupas", "Tela (Ecrã de cinema/TV)", "Cenário de teatro"], correct: "Tela (Ecrã de cinema/TV)", exp: "Falso amigo! 'Pantalla' é a tela do cinema. 'Tela' em espanhol significa tecido." },
-        { type: "typing", q: "Qual é a tradução da palavra 'Poltrona' para espanhol (muito usada em cinemas)?", correct: ["butaca"], exp: "Butaca significa poltrona (de cinema ou teatro)." },
-        { type: "choice", q: "Qual é a diferença entre 'Chiste' e 'Chisme'?", options: ["Chiste = Piada, Chisme = Fofoca", "Chiste = Fofoca, Chisme = Piada", "São sinónimos (ambos significam piada)"], correct: "Chiste = Piada, Chisme = Fofoca", exp: "Mais um falso amigo! Lembra-te: Chiste é para rir (piada), Chisme é para coscuvilhar (fofoca)." },
-        { type: "typing", q: "Como se escreve a palavra 'Óculos' em espanhol (começa com G)?", correct: ["gafas"], exp: "Óculos em espanhol pode ser 'gafas' ou 'anteojos'." },
-        { type: "choice", q: "Se queres comprar um bilhete, deves ir à...", options: ["Cartelera", "Butaca", "Taquilla"], correct: "Taquilla", exp: "Taquilla significa bilheteira (ou bilheteria no Brasil). Cartelera significa 'em cartaz'." }
+        // Imagem 1 (Cinema e Teatro)
+        { type: "choice", q: "Qual é a tradução da palavra 'Poltrona' para espanhol (usada em cinemas)?", options: ["Butaca", "Silla", "Banqueta"], correct: "Butaca", exp: "Butaca significa poltrona." },
+        { type: "typing", q: "Como se escreve 'câmera' em espanhol?", correct: ["cámara", "camara"], exp: "A tradução correta é 'cámara'." },
+        { type: "choice", q: "Se um filme está 'em cartaz', dizemos que ele está en...", options: ["Póster", "Cartelera", "Pantalla"], correct: "Cartelera", exp: "Estar em cartaz é estar 'en cartelera'." },
+        { type: "choice", q: "Em espanhol, se estás à espera para comprar um bilhete, estás na...", options: ["Fila / Cola", "Línea", "Rabo"], correct: "Fila / Cola", exp: "Podes usar 'cola' ou 'fila' para dizer que estás na fila." },
+        { type: "typing", q: "Como se diz 'Curta-metragem' em espanhol?", correct: ["cortometraje"], exp: "Curta-metragem = Cortometraje." },
+        { type: "typing", q: "Como se diz 'Longa-metragem' em espanhol?", correct: ["largometraje"], exp: "Longa-metragem = Largometraje." },
+        { type: "choice", q: "Qual destas palavras significa 'bilhete' de cinema, e NÃO 'renda' (dinheiro)?", options: ["Ingreso", "Entrada / Boleto", "Renda"], correct: "Entrada / Boleto", exp: "Entrada ou boleto = bilhete. Ingreso = renda (dinheiro)." },
+        { type: "choice", q: "Atenção aos falsos amigos! O que significa 'Escena'?", options: ["Jantar", "Cena de um filme", "Palco"], correct: "Cena de um filme", exp: "Escena é uma cena de um filme ou teatro." },
+        { type: "choice", q: "Se queres dizer 'jantar' em espanhol, dizes...", options: ["Escena", "Cena", "Almuerzo"], correct: "Cena", exp: "O jantar em espanhol diz-se 'cena'." },
+        { type: "choice", q: "O que significa 'Escenario'?", options: ["Escadaria", "Camarote", "Cenário ou palco"], correct: "Cenário ou palco", exp: "Escenario é o palco ou o cenário em si." },
+        { type: "typing", q: "Como se diz 'fileira' (ex: de cadeiras) em espanhol?", correct: ["fila"], exp: "Fileira traduz-se como 'fila'." },
+        { type: "typing", q: "Traduza a palavra 'Filmagem' para espanhol:", correct: ["filmación", "filmacion"], exp: "Filmagem = Filmación." },
+        { type: "choice", q: "A palavra espanhola para 'Roteiro/Guião' de um filme é...", options: ["Libreto", "Guion", "Ruta"], correct: "Guion", exp: "O roteiro de um filme chama-se 'guion'." },
+        { type: "typing", q: "A pessoa que escreve o guião (roteirista) chama-se...", correct: ["guionista"], exp: "Roteirista = Guionista." },
+        { type: "choice", q: "Cuidado com os falsos amigos! 'Palco' em espanhol significa...", options: ["Camarote", "Chão", "Escenario"], correct: "Camarote", exp: "'Palco' em espanhol é um camarote de teatro. Palco (lugar de atuar) é 'escenario'." },
+        { type: "choice", q: "A tela onde se projeta o filme chama-se...", options: ["Tela", "Pantalla", "Pizarra"], correct: "Pantalla", exp: "A tela do cinema ou ecrã da TV é 'pantalla'." },
+        { type: "choice", q: "O que significa a palavra espanhola 'Tela'?", options: ["Ecrã", "Teia de aranha", "Tecido"], correct: "Tecido", exp: "'Tela' é um falso amigo que significa 'tecido'." },
+        { type: "choice", q: "A palavra 'pasillo' refere-se a quê num cinema ou avião?", options: ["Corredor", "Assento", "Banheiro"], correct: "Corredor", exp: "El pasillo é o corredor." },
+        { type: "typing", q: "Como se diz 'legenda' de um filme em espanhol?", correct: ["subtítulo", "subtitulo"], exp: "Legenda de filme = Subtítulo." },
+        { type: "choice", q: "A palavra 'Leyenda' significa...", options: ["Legenda", "Lenda", "Leitura"], correct: "Lenda", exp: "'Leyenda' é um falso amigo que significa lenda (ex: mito)." },
+        { type: "typing", q: "O local onde se compram os bilhetes (bilheteira) é a...", correct: ["taquilla"], exp: "Bilheteira = Taquilla." },
+        { type: "choice", q: "A cortina do teatro chama-se...", options: ["Cortina", "Telón", "Alfombra"], correct: "Telón", exp: "A grande cortina de um palco é o 'telón'." },
+        { type: "choice", q: "A 'tomada' de um filme (gravação) diz-se...", options: ["Enchufe", "Toma", "Grabación"], correct: "Toma", exp: "Uma tomada de câmara é uma 'toma'. Toma elétrica é 'enchufe'." },
+        { type: "choice", q: "A tomada de eletricidade na parede chama-se...", options: ["Enchufe", "Toma", "Corriente"], correct: "Enchufe", exp: "A ficha/tomada elétrica é o 'enchufe'." },
+        { type: "choice", q: "Um filme que vende muitos bilhetes (sucesso de bilheteira) é considerado...", options: ["Taquillera", "Famosa", "Cara"], correct: "Taquillera", exp: "Usa-se o adjetivo 'taquillera' para um sucesso de bilheteira." },
+        { type: "choice", q: "A palavra 'densa' pode ser usada num filme com o sentido de...", options: ["Pesada", "Leve", "Clara"], correct: "Pesada", exp: "Uma atmosfera densa significa uma atmosfera pesada." },
+        { type: "choice", q: "A expressão '¡Rollo!' é usada para demonstrar...", options: ["Alegria", "Insatisfação / Chatice", "Surpresa"], correct: "Insatisfação / Chatice", exp: "Dizer '¡Qué rollo!' significa 'Que chatice!'." },
+        { type: "choice", q: "Uma piada para rir diz-se...", options: ["Chisme", "Chiste", "Broma"], correct: "Chiste", exp: "Piada = Chiste." },
+        { type: "choice", q: "Uma fofoca ou boato diz-se...", options: ["Chisme", "Chiste", "Mentira"], correct: "Chisme", exp: "Fofoca = Chisme." },
+        { type: "typing", q: "Um filme de terror muito assustador (horripilante) pode ser descrito como...", correct: ["espeluznante"], exp: "Horripilante = Espeluznante." },
+        { type: "choice", q: "Se um filme é muito 'chato' e dá sono, ele é...", options: ["Aburrido", "Divertido", "Largo"], correct: "Aburrido", exp: "Chato/Entediante = Aburrido." },
+        { type: "choice", q: "O verbo 'quedar', quando significa 'estar localizado', é sinónimo de...", options: ["Irse", "Estar ubicado", "Quedarse"], correct: "Estar ubicado", exp: "'Queda en Madrid' = 'Está ubicado en Madrid' (fica em)." },
+        
+        // Imagens 2 e 3 (Casa, Natureza, Quotidiano)
+        { type: "typing", q: "Como se diz 'A árvore' em espanhol?", correct: ["el árbol", "el arbol", "arbol", "árbol"], exp: "A árvore = El árbol." },
+        { type: "typing", q: "Como se diz 'vizinho' em espanhol?", correct: ["vecino", "el vecino"], exp: "Vizinho = Vecino." },
+        { type: "choice", q: "A 'vizinhança' traduz-se para espanhol como...", options: ["La vecindad", "El barrio", "La calle"], correct: "La vecindad", exp: "Vizinhança = La vecindad." },
+        { type: "typing", q: "Onde cultivas os teus vegetais (horta)?", correct: ["la huerta", "huerta"], exp: "Horta = La huerta." },
+        { type: "choice", q: "Como se diz 'porco' em espanhol?", options: ["Perro", "Cerdo / Puerco", "Pato"], correct: "Cerdo / Puerco", exp: "Porco diz-se 'cerdo' ou 'puerco'." },
+        { type: "choice", q: "Em Espanha, a palavra 'piso' (ou departamento) é muito usada para referir-se a um...", options: ["Chão", "Andar", "Apartamento"], correct: "Apartamento", exp: "'Piso' em Espanha é sinónimo de apartamento." },
+        { type: "typing", q: "Como se diz 'óculos' em espanhol?", correct: ["gafas", "anteojos", "las gafas", "los anteojos"], exp: "Óculos = Gafas ou Anteojos." },
+        { type: "choice", q: "Como se diz 'calçada' em espanhol?", options: ["Calle", "Vereda / Acera", "Camino"], correct: "Vereda / Acera", exp: "Calçada traduz-se por 'vereda' ou 'acera'." },
+        { type: "choice", q: "A palavra 'hecho' significa...", options: ["Acontecimento / Facto", "Pessoa", "Lugar"], correct: "Acontecimento / Facto", exp: "'El hecho' = O facto / O acontecimento." },
+        { type: "typing", q: "Traduza a palavra 'século' para espanhol:", correct: ["siglo", "el siglo"], exp: "Século = Siglo." },
+        { type: "choice", q: "A palavra 'campana' significa...", options: ["Sino", "Mas sim (conjunção)", "Campanha"], correct: "Sino", exp: "'Campana' é o sino da igreja. Não confundas com a conjunção 'sino' (mas sim)." },
+        { type: "choice", q: "A palavra 'sino' (em oposição a campana) é uma conjunção que significa...", options: ["Sino da igreja", "Mas sim", "Se não"], correct: "Mas sim", exp: "Ex: 'No es blanco, sino negro' (Não é branco, mas sim preto)." }
       ],
       conjunciones: [
         { type: "choice", q: "Qual a conjunção correta? Agujas ________ hilos.", options: ["y", "e", "u"], correct: "e", exp: "Antes de palavras iniciadas com som de 'i' ou 'hi', troca-se 'y' por 'e'." },
