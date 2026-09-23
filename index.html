@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EspanholLingo - Prepara a tua Prova</title>
+  <title>EspanholLingo - Prova</title>
   <style>
     :root {
       --green: #58cc02;
       --green-shadow: #58a700;
+      --green-light: #d7ffb8;
+      --green-text: #2b7000;
       --blue: #1cb0f6;
       --blue-shadow: #1899d6;
       --red: #ff4b4b;
       --red-shadow: #ea2b2b;
+      --red-light: #ffdfe0;
+      --red-text: #ea2b2b;
       --yellow: #ffc800;
-      --yellow-shadow: #e5b200;
       --gray-light: #f7f7f7;
       --gray-border: #e5e5e5;
       --text-dark: #4b4b4b;
@@ -21,7 +24,7 @@
 
     * {
       box-sizing: border-box;
-      font-family: 'Feather', 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       margin: 0;
       padding: 0;
     }
@@ -34,7 +37,7 @@
       min-height: 100vh;
     }
 
-    /* Header Navegação */
+    /* Cabeçalho Fixo */
     header {
       border-bottom: 2px solid var(--gray-border);
       padding: 12px 24px;
@@ -48,7 +51,7 @@
     }
 
     .logo {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: var(--green);
       display: flex;
@@ -56,20 +59,64 @@
       gap: 8px;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
     .stats {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       font-weight: bold;
       font-size: 1.1rem;
     }
 
-    .stat-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    /* Botões Padrão */
+    .btn {
+      border: none;
+      padding: 12px 24px;
+      border-radius: 16px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.1s;
+      outline: none;
+      text-align: center;
     }
 
-    /* Main Container */
+    .btn-green {
+      background-color: var(--green);
+      color: white;
+      box-shadow: 0 4px 0 var(--green-shadow);
+    }
+    .btn-green:active { transform: translateY(4px); box-shadow: 0 0 0 var(--green-shadow); }
+
+    .btn-blue {
+      background-color: var(--blue);
+      color: white;
+      box-shadow: 0 4px 0 var(--blue-shadow);
+    }
+    .btn-blue:active { transform: translateY(4px); box-shadow: 0 0 0 var(--blue-shadow); }
+
+    .btn-red {
+      background-color: var(--red);
+      color: white;
+      box-shadow: 0 4px 0 var(--red-shadow);
+    }
+    .btn-red:active { transform: translateY(4px); box-shadow: 0 0 0 var(--red-shadow); }
+
+    .btn-gray {
+      background-color: #fff;
+      color: #afafaf;
+      border: 2px solid var(--gray-border);
+      box-shadow: 0 4px 0 var(--gray-border);
+      cursor: not-allowed;
+    }
+
+    /* Container Principal */
     main {
       flex: 1;
       max-width: 800px;
@@ -80,97 +127,69 @@
       flex-direction: column;
     }
 
-    /* Botões Principais */
-    .btn {
-      border: none;
-      padding: 14px 28px;
-      border-radius: 16px;
-      font-weight: 800;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      cursor: pointer;
-      transition: filter 0.2s, transform 0.1s;
-      outline: none;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-green {
-      background-color: var(--green);
-      color: white;
-      box-shadow: 0 4px 0 var(--green-shadow);
-    }
-    .btn-green:active {
-      transform: translateY(4px);
-      box-shadow: 0 0 0 var(--green-shadow);
-    }
-
-    .btn-blue {
-      background-color: var(--blue);
-      color: white;
-      box-shadow: 0 4px 0 var(--blue-shadow);
-    }
-    .btn-blue:active {
-      transform: translateY(4px);
-      box-shadow: 0 0 0 var(--blue-shadow);
-    }
-
-    .btn-gray {
-      background-color: #fff;
-      color: var(--text-dark);
-      border: 2px solid var(--gray-border);
-      box-shadow: 0 4px 0 var(--gray-border);
-    }
-    .btn-gray:active {
-      transform: translateY(4px);
-      box-shadow: 0 0 0 var(--gray-border);
-    }
-
-    /* Menu Inicial / Dashboard */
-    #home-screen {
-      text-align: center;
+    /* --- TELA DE TEORIA (Padrão) --- */
+    #theory-screen {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 24px;
-      margin-top: 20px;
+      gap: 20px;
+    }
+    
+    .theory-header {
+      text-align: center;
+      margin-bottom: 10px;
     }
 
-    .owl-avatar {
-      font-size: 5rem;
-      background: var(--gray-light);
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 4px solid var(--green);
+    .summary-card {
+      border: 2px solid var(--gray-border);
+      border-radius: 16px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 4px 0 var(--gray-border);
     }
 
-    .section-title {
-      font-size: 1.5rem;
+    .summary-card h3 {
+      color: var(--blue);
       margin-bottom: 12px;
+      font-size: 1.3rem;
+      border-bottom: 2px solid var(--gray-light);
+      padding-bottom: 6px;
+    }
+
+    .summary-card p, .summary-card ul {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .summary-card ul { padding-left: 20px; }
+
+    /* Tabelas Responsivas para Celular */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 2px solid var(--gray-border);
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 400px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--gray-border);
+      padding: 10px;
       text-align: left;
     }
+    th { background-color: var(--gray-light); }
+    tr:last-child td { border-bottom: none; }
 
-    .nav-tabs {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 24px;
-      justify-content: center;
-      width: 100%;
-    }
-
-    /* Secção de Exercícios */
+    /* --- TELA DE QUIZ --- */
     #quiz-screen {
       display: none;
       flex-direction: column;
+      flex: 1;
       justify-content: space-between;
-      min-height: 70vh;
     }
 
     .quiz-header {
@@ -195,18 +214,16 @@
       transition: width 0.3s ease;
     }
 
-    .question-box {
-      margin-bottom: 24px;
+    .question-title {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      font-weight: 800;
     }
 
-    .question-box h2 {
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-    }
-
+    /* Opções Múltipla Escolha */
     .options-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 12px;
     }
 
@@ -215,17 +232,14 @@
       border-radius: 16px;
       padding: 16px;
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: bold;
       cursor: pointer;
       box-shadow: 0 4px 0 var(--gray-border);
       transition: all 0.1s;
       background: white;
-      text-align: left;
     }
 
-    .option-card:hover {
-      background-color: var(--gray-light);
-    }
+    .option-card:hover { background-color: var(--gray-light); }
 
     .option-card.selected {
       border-color: var(--blue);
@@ -234,16 +248,38 @@
       color: var(--blue-shadow);
     }
 
-    /* Footer da Pergunta (Feedback) */
-    .quiz-footer {
-      border-top: 2px solid var(--gray-border);
-      padding-top: 20px;
-      margin-top: auto;
+    /* Campo de Digitar */
+    .typing-container {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 10px;
     }
 
+    .typing-input {
+      width: 100%;
+      padding: 16px;
+      font-size: 1.2rem;
+      border: 2px solid var(--gray-border);
+      border-radius: 16px;
+      outline: none;
+      background-color: var(--gray-light);
+      transition: border 0.2s;
+    }
+    .typing-input:focus {
+      border-color: var(--blue);
+      background-color: #fff;
+    }
+
+    /* Área Inferior (Check) */
+    .quiz-bottom {
+      border-top: 2px solid var(--gray-border);
+      padding: 20px 0;
+      margin-top: 30px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* Painel de Feedback Animado */
     .feedback-panel {
       position: fixed;
       bottom: 0;
@@ -253,387 +289,500 @@
       display: none;
       justify-content: space-between;
       align-items: center;
-      max-width: 800px;
-      margin: 0 auto;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
+      animation: slideUp 0.3s forwards;
+      z-index: 200;
+    }
+
+    .feedback-panel .feedback-content {
+      flex: 1;
+      padding-right: 20px;
     }
 
     .feedback-panel.correct {
-      background-color: #d7ffb8;
-      color: #2e7200;
+      background-color: var(--green-light);
+      color: var(--green-text);
       display: flex;
     }
 
     .feedback-panel.incorrect {
-      background-color: #ffdfe0;
-      color: #ea2b2b;
+      background-color: var(--red-light);
+      color: var(--red-text);
       display: flex;
     }
 
-    .feedback-text {
-      font-weight: 800;
-      font-size: 1.2rem;
+    .feedback-title {
+      font-weight: 900;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Secção do Resumo / Manual */
-    #summary-screen {
+    .feedback-msg {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    /* --- TELA DE RESULTADO --- */
+    #result-screen {
       display: none;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       gap: 20px;
+      padding: 40px 0;
     }
 
-    .summary-card {
+    .result-owl { font-size: 6rem; }
+    
+    .diagnostic-box {
+      background: var(--gray-light);
       border: 2px solid var(--gray-border);
       border-radius: 16px;
       padding: 20px;
-      background: #fff;
-    }
-
-    .summary-card h3 {
-      color: var(--blue);
-      margin-bottom: 12px;
-      font-size: 1.3rem;
-      border-bottom: 2px solid var(--gray-light);
-      padding-bottom: 6px;
-    }
-
-    .summary-card p, .summary-card ul {
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .summary-card ul {
-      padding-left: 20px;
-    }
-
-    table {
       width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0;
-    }
-
-    th, td {
-      border: 1px solid var(--gray-border);
-      padding: 8px;
       text-align: left;
     }
 
-    th {
-      background-color: var(--gray-light);
+    .diagnostic-box h3 { color: var(--red); margin-bottom: 10px; }
+    .diagnostic-box ul { padding-left: 20px; line-height: 1.6; }
+
+    /* Animações */
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .shake-anim { animation: shake 0.4s ease-in-out; }
+
+    @media (max-width: 600px) {
+      .feedback-panel { flex-direction: column; gap: 15px; text-align: center; }
+      .feedback-panel .feedback-content { padding-right: 0; }
+      .btn { width: 100%; }
+      .header-actions .btn { width: auto; padding: 10px 15px; font-size: 0.9rem;}
     }
   </style>
 </head>
 <body>
 
+  <!-- CABEÇALHO COM BOTÃO JOGAR -->
   <header>
-    <div class="logo">🦉 EspanholLingo</div>
-    <div class="stats">
-      <div class="stat-item" style="color: var(--red);">❤️ <span id="lives-count">5</span></div>
-      <div class="stat-item" style="color: var(--yellow);">⚡ <span id="xp-count">0</span> XP</div>
+    <div class="logo" onclick="location.reload()" style="cursor:pointer;">🦉 EspanholLingo</div>
+    <div class="header-actions">
+      <div class="stats">
+        <span style="color: var(--red);">❤️ <span id="lives-count">5</span></span>
+      </div>
+      <button class="btn btn-green" id="btn-jogar-top" onclick="startQuiz()">JOGAR</button>
     </div>
   </header>
 
   <main>
-    <!-- NAV TABS -->
-    <div class="nav-tabs" id="main-nav">
-      <button class="btn btn-green" onclick="showScreen('home')">Praticar</button>
-      <button class="btn btn-blue" onclick="showScreen('summary')">Manual de Estudos</button>
-    </div>
-
-    <!-- TELA INICIAL (HOME) -->
-    <div id="home-screen">
-      <div class="owl-avatar">🦉</div>
-      <h2>Pronto para gabaritar a prova de Espanhol?</h2>
-      <p>Treina com exercícios no formato Duolingo baseados nos conteúdos da tua prova!</p>
-      
-      <button class="btn btn-green" style="width: 100%; max-width: 300px; margin-top: 20px;" onclick="startQuiz()">
-        INICIAR LIÇÃO
-      </button>
-    </div>
-
-    <!-- TELA DE QUIZ (ESTILO DUOLINGO) -->
-    <div id="quiz-screen">
-      <div>
-        <div class="quiz-header">
-          <button class="btn btn-gray" style="padding: 8px 14px;" onclick="showScreen('home')">✕</button>
-          <div class="progress-bar">
-            <div class="progress-fill" id="progress-fill"></div>
-          </div>
-        </div>
-
-        <div class="question-box">
-          <h2 id="question-text">Pergunta aqui...</h2>
-          <div class="options-grid" id="options-container">
-            <!-- Opções inseridas dinamicamente -->
-          </div>
-        </div>
+    <!-- TELA DE TEORIA (Aparece ao entrar) -->
+    <div id="theory-screen">
+      <div class="theory-header">
+        <h2>📘 Manual de Estudos</h2>
+        <p>Revise a teoria ou clique em <strong>JOGAR</strong> lá em cima para testar seus conhecimentos!</p>
       </div>
-
-      <div class="quiz-footer">
-        <button class="btn btn-green" id="check-btn" onclick="checkAnswer()" style="width: 100%;">VERIFICAR</button>
-      </div>
-    </div>
-
-    <!-- PAINEL DE FEEDBACK INFERIOR -->
-    <div class="feedback-panel" id="feedback-panel">
-      <div>
-        <div class="feedback-text" id="feedback-title">Excelente!</div>
-        <div id="feedback-msg" style="margin-top: 4px;"></div>
-      </div>
-      <button class="btn btn-green" id="next-btn" onclick="nextQuestion()">CONTINUAR</button>
-    </div>
-
-    <!-- TELA DE RESUMO / MANUAL DE ESTUDOS -->
-    <div id="summary-screen">
-      <h2>📘 Manual Completo de Estudos para a Prova</h2>
 
       <div class="summary-card">
         <h3>1. Pretérito Imperfecto de Indicativo</h3>
-        <p><strong>Uso:</strong> Descrever ações habituais no passado, descrições físicas/psicológicas ou cenários de fundo.</p>
-        <p><strong>Verbos Regulares:</strong></p>
-        <table>
-          <tr>
-            <th>Pessoa</th>
-            <th>-AR (Hablar)</th>
-            <th>-ER / -IR (Comer / Vivir)</th>
-          </tr>
-          <tr><td>Yo</td><td>hablaba</td><td>comía / vivía</td></tr>
-          <tr><td>Tú</td><td>hablabas</td><td>comías / vivías</td></tr>
-          <tr><td>Él/Ella/Ud.</td><td>hablaba</td><td>comía / vivía</td></tr>
-          <tr><td>Nosotros</td><td>hablábamos</td><td>comíamos / vivíamos</td></tr>
-          <tr><td>Vosotros</td><td>hablabais</td><td>comíais / vivíais</td></tr>
-          <tr><td>Ellos/Ellas/Uds.</td><td>hablaban</td><td>comían / vivían</td></tr>
-        </table>
-        <p><strong>Apenas 3 Verbos Irregulares:</strong></p>
-        <ul>
-          <li><strong>Ir:</strong> iba, ibas, iba, íbamos, ibais, iban</li>
-          <li><strong>Ser:</strong> era, eras, era, éramos, erais, eran</li>
-          <li><strong>Ver:</strong> veía, veías, veía, veíamos, veíais, veían</li>
-        </ul>
+        <p><strong>Uso:</strong> Ações rotineiras no passado, descrições e "cenários" de fundo.</p>
+        <div class="table-responsive">
+          <table>
+            <tr><th>Pessoa</th><th>-AR (Hablar)</th><th>-ER / -IR (Comer/Vivir)</th></tr>
+            <tr><td>Yo</td><td>hablaba</td><td>comía / vivía</td></tr>
+            <tr><td>Tú</td><td>hablabas</td><td>comías / vivías</td></tr>
+            <tr><td>Él/Ella/Ud.</td><td>hablaba</td><td>comía / vivía</td></tr>
+            <tr><td>Nosotros</td><td>hablábamos</td><td>comíamos / vivíamos</td></tr>
+            <tr><td>Ellos/Uds.</td><td>hablaban</td><td>comían / vivían</td></tr>
+          </table>
+        </div>
+        <p><strong>Irregulares:</strong> Ser (era, eras...), Ir (iba, ibas...), Ver (veía, veías...).</p>
       </div>
 
       <div class="summary-card">
         <h3>2. Pretérito Indefinido (Perfecto Simple)</h3>
-        <p><strong>Uso:</strong> Ações pontuais, concluídas no passado num tempo delimitado (ex: <em>ayer, el año pasado, en 1937</em>).</p>
-        <p><strong>Verbos Regulares:</strong></p>
-        <table>
-          <tr>
-            <th>Pessoa</th>
-            <th>-AR (Hablar)</th>
-            <th>-ER / -IR (Comer / Vivir)</th>
-          </tr>
-          <tr><td>Yo</td><td>hablé</td><td>comí / viví</td></tr>
-          <tr><td>Tú</td><td>hablaste</td><td>comiste / viviste</td></tr>
-          <tr><td>Él/Ella/Ud.</td><td>habló</td><td>comió / vivió</td></tr>
-          <tr><td>Nosotros</td><td>hablamos</td><td>comimos / vivimos</td></tr>
-          <tr><td>Vosotros</td><td>hablasteis</td><td>comisteis / vivisteis</td></tr>
-          <tr><td>Ellos/Ellas/Uds.</td><td>hablaron</td><td>comieron / vivieron</td></tr>
-        </table>
-        <p><strong>Principais Irregulares:</strong></p>
+        <p><strong>Uso:</strong> Ações pontuais, finalizadas no passado num tempo específico (ayer, anoche).</p>
+        <div class="table-responsive">
+          <table>
+            <tr><th>Pessoa</th><th>-AR (Hablar)</th><th>-ER / -IR (Comer/Vivir)</th></tr>
+            <tr><td>Yo</td><td>hablé</td><td>comí / viví</td></tr>
+            <tr><td>Tú</td><td>hablaste</td><td>comiste / viviste</td></tr>
+            <tr><td>Él/Ella/Ud.</td><td>habló</td><td>comió / vivió</td></tr>
+            <tr><td>Nosotros</td><td>hablamos</td><td>comimos / vivimos</td></tr>
+            <tr><td>Ellos/Uds.</td><td>hablaron</td><td>comieron / vivieron</td></tr>
+          </table>
+        </div>
+        <p><strong>Irregulares:</strong> Ser/Ir (fui), Hacer (hice), Tener (tuve).</p>
+      </div>
+
+      <div class="summary-card">
+        <h3>3. Contraste: Indefinido vs Imperfecto</h3>
+        <p>O <strong>Imperfecto</strong> descreve a ação que estava a acontecer (fundo), e o <strong>Indefinido</strong> descreve a ação pontual que a interrompeu.</p>
+        <p><em>Ex: "Yo <strong>estudiaba</strong> (imperfecto) cuando el teléfono <strong>sonó</strong> (indefinido)."</em></p>
+      </div>
+
+      <div class="summary-card">
+        <h3>4. Conjunciones</h3>
         <ul>
-          <li><strong>Ser / Ir:</strong> fui, fuiste, fue, fuimos, fuisteis, fueron</li>
-          <li><strong>Hacer:</strong> hice, hiciste, hizo, hicimos, hicisteis, hicieron</li>
-          <li><strong>Estar:</strong> estuve, estuviste, estuvo, estuvimos...</li>
-          <li><strong>Tener:</strong> tuve, tuviste, tuvo, tuvimos...</li>
+          <li><strong>y -> e:</strong> Troca-se antes de palavras com som de "i" ou "hi". Ex: <em>Padre <strong>e</strong> hijo</em>.</li>
+          <li><strong>o -> u:</strong> Troca-se antes de palavras com som de "o" ou "ho". Ex: <em>Siete <strong>u</strong> ocho</em>.</li>
+          <li><strong>Adversativas:</strong> <em>pero</em> (mas/porém), <em>sino</em> (mas sim/pelo contrário).</li>
+          <li><strong>Causais:</strong> <em>porque</em>, <em>ya que</em>.</li>
         </ul>
       </div>
 
       <div class="summary-card">
-        <h3>3. Contraste: Indefinido vs. Imperfecto</h3>
-        <p>É comum usar ambos na mesma frase para expressar uma ação em andamento interrompida por outra:</p>
+        <h3>5. Obra: Guernica</h3>
         <ul>
-          <li><strong>Ação em andamento (Imperfecto):</strong> "Yo <em>estudiaba</em> cuando..." (Eu estudava quando...)</li>
-          <li><strong>Ação pontual de interrupção (Indefinido):</strong> "...el teléfono <em>sonó</em>." (...o telefone tocou.)</li>
-        </ul>
-      </div>
-
-      <div class="summary-card">
-        <h3>4. Conjunciones (Conjunções)</h3>
-        <ul>
-          <li><strong>Copulativas:</strong> <em>y</em> (muda para <strong>e</strong> antes de som de "i/hi"). Ex: <em>padre e hijo</em>.</li>
-          <li><strong>Disyuntivas:</strong> <em>o</em> (muda para <strong>u</strong> antes de som de "o/ho"). Ex: <em>siete u ocho</em>.</li>
-          <li><strong>Adversativas:</strong> <em>pero</em> (mas), <em>sin embargo</em> (no entanto), <em>sino</em> (mas sim).</li>
-          <li><strong>Causales:</strong> <em>porque</em>, <em>ya que</em>, <em>como</em>.</li>
-        </ul>
-      </div>
-
-      <div class="summary-card">
-        <h3>5. Obra: Guernica (Pablo Picasso)</h3>
-        <ul>
-          <li><strong>Autor:</strong> Pablo Picasso (1937).</li>
-          <li><strong>Contexto:</strong> Bombardeamento da cidade basca de Guernica durante a Guerra Civil Espanhola.</li>
-          <li><strong>Estilo:</strong> Cubismo; pintura em preto, branco e tons de cinzento para representar sofrimento e tragédia.</li>
-          <li><strong>Símbolos Importantes:</strong>
-            <ul>
-              <li><strong>El Toro (O Touro):</strong> Simboliza a brutalidade, escuridão e o fascismo.</li>
-              <li><strong>El Caballo (O Cavalo):</strong> Representa o povo inocente em sofrimento.</li>
-              <li><strong>La Bombilla (A Lâmpada):</strong> Simboliza o avanço tecnológico usado para a destruição ou a vista do olho divino/tecnologia.</li>
-              <li><strong>La Madre con el hijo muerto:</strong> A dor da perda humana.</li>
-            </ul>
-          </li>
+          <li><strong>Autor e Ano:</strong> Pablo Picasso, 1937.</li>
+          <li><strong>Estilo:</strong> Cubismo (preto, branco, cinza).</li>
+          <li><strong>O Touro (Toro):</strong> Simboliza a brutalidade, fascismo e a escuridão.</li>
+          <li><strong>O Cavalo (Caballo):</strong> Simboliza o povo inocente em agonia.</li>
         </ul>
       </div>
     </div>
+
+    <!-- TELA DE QUIZ -->
+    <div id="quiz-screen">
+      <div>
+        <div class="quiz-header">
+          <button class="btn btn-gray" style="padding: 8px 14px; box-shadow: none; border: 2px solid var(--gray-border); color: #888;" onclick="quitQuiz()">✕</button>
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+        </div>
+
+        <div id="question-area">
+          <h2 class="question-title" id="question-text">Pergunta...</h2>
+          <div id="input-container">
+            <!-- Botões ou Campo de texto injetados via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-bottom">
+        <button class="btn btn-gray" id="check-btn" style="width: 100%;" disabled onclick="checkAnswer()">VERIFICAR</button>
+      </div>
+    </div>
+
+    <!-- TELA DE RESULTADOS (DIAGNÓSTICO) -->
+    <div id="result-screen">
+      <div class="result-owl">🎉🦉</div>
+      <h2>Lição Concluída!</h2>
+      <p style="font-size: 1.2rem;">Você acertou <strong id="score-text"></strong> questões!</p>
+      
+      <div id="diagnostic-area" style="width: 100%;"></div>
+
+      <button class="btn btn-blue" style="width: 100%; margin-top: 20px;" onclick="location.reload()">VOLTAR AO MANUAL</button>
+      <button class="btn btn-green" style="width: 100%; margin-top: 10px;" onclick="startQuiz()">JOGAR NOVAMENTE</button>
+    </div>
+
   </main>
 
+  <!-- PAINEL DE FEEDBACK FIXO -->
+  <div class="feedback-panel" id="feedback-panel">
+    <div class="feedback-content">
+      <div class="feedback-title" id="feedback-title"></div>
+      <div class="feedback-msg" id="feedback-msg"></div>
+    </div>
+    <button class="btn" id="next-btn" onclick="nextQuestion()"></button>
+  </div>
+
   <script>
-    // BASE DE DADOS DE PERGUNTAS (ESTILO DUOLINGO)
-    const questions = [
-      {
-        question: "Qual é a forma correta do verb 'hablar' no Pretérito Imperfecto para 'Yo'?",
-        options: ["hablé", "hablaba", "hablaría", "hablo"],
-        correct: 1,
-        explanation: "No Pretérito Imperfecto, os verbos da 1ª conjugação (-AR) terminam em -aba."
-      },
-      {
-        question: "Como se conjuga o verbo 'Ser' na primeira pessoa (Yo) do Pretérito Imperfecto?",
-        options: ["fui", "era", "sería", "estaba"],
-        correct: 1,
-        explanation: "'Ser' é irregular no Imperfecto: era, eras, era, éramos, erais, eran."
-      },
-      {
-        question: "Completa a frase: 'Ayer Juan _______ (comer) una paella deliciosa.'",
-        options: ["comía", "comió", "comerá", "ha comido"],
-        correct: 1,
-        explanation: "'Ayer' (ontem) exige o Pretérito Indefinido (ação pontual e concluída): comió."
-      },
-      {
-        question: "Na frase: 'Yo _______ (leer) un libro cuando mi amigo _______ (llamar)'. Quais são os verbos?",
-        options: ["leí / llamaba", "leía / llamó", "leía / llamaba", "leí / llamó"],
-        correct: 1,
-        explanation: "Uma ação contínua em andamento (leía - Imperfecto) é interrompida por uma pontual (llamó - Indefinido)."
-      },
-      {
-        question: "Substitui 'y' corretamente na frase: 'Necesitamos comprar agujas _____ hilos.'",
-        options: ["y", "e", "u", "o"],
-        correct: 1,
-        explanation: "Usa-se 'e' em vez de 'y' antes de palavras que começam com som de 'i' ou 'hi'."
-      },
-      {
-        question: "Quem pintou a famosa obra 'Guernica' em 1937?",
-        options: ["Salvador Dalí", "Diego Velázquez", "Pablo Picasso", "Francisco de Goya"],
-        correct: 2,
-        explanation: "'Guernica' é uma obra mundialmente conhecida de Pablo Picasso."
-      },
-      {
-        question: "Na obra 'Guernica', o que simboliza a figura do 'Toro' (Touro)?",
-        options: ["A paz mundial", "A brutalidade e a escuridão", "O progresso", "A esperança"],
-        correct: 1,
-        explanation: "O touro representa a brutalidade, o autoritarismo e a escuridão da guerra."
-      },
-      {
-        question: "Qual das seguintes conjunções indica oposição (adversativa)?",
-        options: ["porque", "pero", "ya que", "y"],
-        correct: 1,
-        explanation: "'Pero' significa 'mas' ou 'porém' em espanhol."
-      }
-    ];
+    // BANCO DE DADOS DINÂMICO (5 perguntas por conteúdo)
+    const questionPool = {
+      imperfecto: [
+        { type: "choice", q: "Qual é a forma correta do verbo 'Hablar' para Yo no Pretérito Imperfecto?", options: ["habló", "hablaba", "hablé"], correct: "hablaba", exp: "Terminações -AR no imperfecto usam -aba." },
+        { type: "choice", q: "Como se conjuga o verbo irregular 'Ser' para Tú no Imperfecto?", options: ["fuiste", "eres", "eras"], correct: "eras", exp: "Ser é irregular: era, eras, era..." },
+        { type: "typing", q: "Escreva a forma correta: Nosotros ________ (vivir) en Madrid.", correct: ["vivíamos", "viviamos"], exp: "Verbos terminados em -IR usam a terminação -íamos." },
+        { type: "choice", q: "Como fica o verbo 'Ver' para Yo no Imperfecto?", options: ["veía", "vía", "vi"], correct: "veía", exp: "Ver é um dos 3 irregulares: veía, veías..." },
+        { type: "typing", q: "Escreva a forma correta do verbo Ir: Ellos ________ (ir) al cine los domingos.", correct: ["iban"], exp: "Ir é irregular: iba, ibas, iba, íbamos, ibais, iban." }
+      ],
+      indefinido: [
+        { type: "choice", q: "Ayer yo ________ (hablar) con mi madre.", options: ["hablaba", "hablo", "hablé"], correct: "hablé", exp: "'Ayer' indica uma ação pontual no passado (Indefinido)." },
+        { type: "typing", q: "Escreva a resposta: El año pasado él ________ (comer) paella.", correct: ["comió", "comio"], exp: "Terceira pessoa do singular no indefinido termina em -ió." },
+        { type: "choice", q: "Como é o verbo irregular 'Hacer' para Yo no Indefinido?", options: ["hacía", "hice", "hizo"], correct: "hice", exp: "Hacer é irregular: hice, hiciste, hizo..." },
+        { type: "typing", q: "Escreva a forma correta do verbo Ser/Ir: Nosotros ________ al parque ayer.", correct: ["fuimos"], exp: "Ser e Ir partilham a mesma forma: fui, fuiste, fue, fuimos..." },
+        { type: "choice", q: "Tú ________ (tener) que estudiar anoche.", options: ["tuviste", "tenías", "tuvieses"], correct: "tuviste", exp: "Tener é irregular no indefinido: tuve, tuviste, tuvo..." }
+      ],
+      contraste: [
+        { type: "choice", q: "Yo ________ (estudiar) cuando el teléfono ________ (sonar).", options: ["estudié / sonaba", "estudiaba / sonó", "estudio / sonó"], correct: "estudiaba / sonó", exp: "O Imperfecto (estudiaba) é o cenário, o Indefinido (sonó) é a interrupção." },
+        { type: "choice", q: "Mientras él ________ (dormir), el ladrón entró.", options: ["durmió", "dormía", "duerme"], correct: "dormía", exp: "Ação que estava a decorrer ao fundo pede o Imperfecto." },
+        { type: "typing", q: "Complete com o verbo no Indefinido: Nosotros caminábamos cuando ________ (empezar) a llover.", correct: ["empezó", "empezo"], exp: "A ação que interrompe a caminhada é pontual, logo é Indefinido." },
+        { type: "typing", q: "Complete com o verbo no Imperfecto: ________ (llover) mucho cuando salí de casa.", correct: ["llovía", "llovia"], exp: "A chuva era a condição climática de fundo (Imperfecto)." },
+        { type: "choice", q: "Ana ________ (ver) la tele cuando su madre llegó.", options: ["vio", "veía", "vía"], correct: "veía", exp: "Ação em andamento (Imperfecto) interrompida pela chegada (Indefinido)." }
+      ],
+      vocabulario: [
+        { type: "choice", q: "¿Qué significa 'Desayuno'?", options: ["Almoço", "Jantar", "Café da manhã"], correct: "Café da manhã", exp: "Desayuno é a primeira refeição do dia." },
+        { type: "typing", q: "Traduza a palavra 'Janela' para espanhol:", correct: ["ventana"], exp: "Janela em espanhol é Ventana." },
+        { type: "choice", q: "¿Qué significa 'Perro'?", options: ["Gato", "Cachorro/Cão", "Pássaro"], correct: "Cachorro/Cão", exp: "Perro significa cachorro ou cão em português." },
+        { type: "typing", q: "Traduza a palavra 'Mesa' para espanhol:", correct: ["mesa"], exp: "Escreve-se da mesma forma nos dois idiomas." },
+        { type: "choice", q: "¿Qué significa 'Oficina'?", options: ["Oficina mecânica", "Escritório", "Quarto"], correct: "Escritório", exp: "Oficina é um falso cognato e significa Escritório." }
+      ],
+      conjunciones: [
+        { type: "choice", q: "Qual a conjunção correta? Agujas ________ hilos.", options: ["y", "e", "u"], correct: "e", exp: "Antes de palavras iniciadas com som de 'i' ou 'hi', troca-se 'y' por 'e'." },
+        { type: "typing", q: "Complete com a conjunção correta (o / u): Siete ________ ocho.", correct: ["u"], exp: "Antes de palavras iniciadas com som de 'o' ou 'ho', troca-se 'o' por 'u'." },
+        { type: "choice", q: "No es rojo, ________ azul. (mas sim)", options: ["pero", "sino", "porque"], correct: "sino", exp: "Sino é usado para opor e corrigir uma afirmação negativa anterior." },
+        { type: "typing", q: "Complete: Estudié mucho, ________ no aprobé. (mas / porém)", correct: ["pero"], exp: "Pero significa 'mas' ou 'porém'." },
+        { type: "choice", q: "Lo hago ________ quiero. (causa)", options: ["ya que", "pero", "porque"], correct: "porque", exp: "Porque explica a causa da ação." }
+      ],
+      guernica: [
+        { type: "choice", q: "Quem é o autor da obra Guernica?", options: ["Salvador Dalí", "Pablo Picasso", "Diego Velázquez"], correct: "Pablo Picasso", exp: "Pablo Picasso pintou esta obra icónica em 1937." },
+        { type: "typing", q: "Em espanhol, que animal na obra simboliza a brutalidade e o fascismo?", correct: ["toro"], exp: "El toro (o touro) representa a escuridão e a brutalidade." },
+        { type: "choice", q: "Qual é o estilo artístico da obra Guernica?", options: ["Surrealismo", "Realismo", "Cubismo"], correct: "Cubismo", exp: "É uma das obras cubistas mais famosas do mundo." },
+        { type: "typing", q: "Em que ano a obra Guernica foi pintada?", correct: ["1937"], exp: "Foi pintada em 1937 durante a Guerra Civil Espanhola." },
+        { type: "choice", q: "O que o Cavalo (Caballo) representa na pintura?", options: ["O povo inocente em sofrimento", "A esperança", "O governo"], correct: "O povo inocente em sofrimento", exp: "O cavalo agonizante representa a dor do povo de Guernica." }
+      ]
+    };
 
-    let currentQuestionIndex = 0;
-    let selectedOption = null;
+    // Variáveis de Estado
+    let currentQuiz = [];
+    let currentIndex = 0;
+    let selectedOrTypedValue = "";
+    let mistakes = [];
     let lives = 5;
-    let xp = 0;
+    let score = 0;
 
-    function showScreen(screen) {
-      document.getElementById('home-screen').style.display = 'none';
-      document.getElementById('quiz-screen').style.display = 'none';
-      document.getElementById('summary-screen').style.display = 'none';
-      document.getElementById('feedback-panel').style.display = 'none';
-
-      if (screen === 'home') {
-        document.getElementById('home-screen').style.display = 'flex';
-      } else if (screen === 'quiz') {
-        document.getElementById('quiz-screen').style.display = 'flex';
-      } else if (screen === 'summary') {
-        document.getElementById('summary-screen').style.display = 'flex';
+    function quitQuiz() {
+      if(confirm("Tens a certeza que queres sair da lição?")) {
+        document.getElementById('quiz-screen').style.display = 'none';
+        document.getElementById('theory-screen').style.display = 'flex';
+        document.getElementById('btn-jogar-top').style.display = 'block';
+        document.getElementById('feedback-panel').style.display = 'none';
       }
     }
 
     function startQuiz() {
-      currentQuestionIndex = 0;
-      showScreen('quiz');
+      // Esconder outras telas
+      document.getElementById('theory-screen').style.display = 'none';
+      document.getElementById('result-screen').style.display = 'none';
+      document.getElementById('btn-jogar-top').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'flex';
+
+      // Sorteio de 1 pergunta por categoria
+      currentQuiz = [];
+      mistakes = [];
+      score = 0;
+      lives = 5;
+      document.getElementById('lives-count').innerText = lives;
+
+      const topics = Object.keys(questionPool);
+      topics.forEach(topic => {
+        const questionsArray = questionPool[topic];
+        const randomQ = questionsArray[Math.floor(Math.random() * questionsArray.length)];
+        currentQuiz.push({ ...randomQ, topic }); // Guarda o tópico para o diagnóstico final
+      });
+
+      // Embaralhar as 6 perguntas
+      currentQuiz = currentQuiz.sort(() => Math.random() - 0.5);
+      
+      currentIndex = 0;
       loadQuestion();
     }
 
     function loadQuestion() {
-      const q = questions[currentQuestionIndex];
-      selectedOption = null;
+      const q = currentQuiz[currentIndex];
+      selectedOrTypedValue = "";
       
-      // Atualizar Barra de Progresso
-      const progressPercent = (currentQuestionIndex / questions.length) * 100;
+      // Atualizar Barra
+      const progressPercent = (currentIndex / currentQuiz.length) * 100;
       document.getElementById('progress-fill').style.width = progressPercent + '%';
 
-      // Esconder Painel de Feedback
-      const feedbackPanel = document.getElementById('feedback-panel');
-      feedbackPanel.className = 'feedback-panel';
-
-      document.getElementById('question-text').innerText = q.question;
-      
-      const container = document.getElementById('options-container');
-      container.innerHTML = '';
-
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('div');
-        btn.className = 'option-card';
-        btn.innerText = opt;
-        btn.onclick = () => selectOption(idx, btn);
-        container.appendChild(btn);
-      });
-
+      // Resetar Botão Verificar e Feedback
       const checkBtn = document.getElementById('check-btn');
       checkBtn.className = 'btn btn-gray';
       checkBtn.innerText = 'VERIFICAR';
+      checkBtn.disabled = true;
+      checkBtn.onclick = checkAnswer;
+      document.getElementById('feedback-panel').style.display = 'none';
+
+      // Remover animação de erro anterior
+      document.getElementById('quiz-screen').classList.remove('shake-anim');
+
+      document.getElementById('question-text').innerText = q.q;
+      const container = document.getElementById('input-container');
+      container.innerHTML = '';
+
+      if (q.type === "choice") {
+        // Embaralhar opções localmente
+        const optionsShuffled = [...q.options].sort(() => Math.random() - 0.5);
+        const grid = document.createElement('div');
+        grid.className = 'options-grid';
+
+        optionsShuffled.forEach(opt => {
+          const btn = document.createElement('div');
+          btn.className = 'option-card';
+          btn.innerText = opt;
+          btn.onclick = () => {
+            // Desmarcar todos e marcar este
+            Array.from(grid.children).forEach(c => c.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedOrTypedValue = opt;
+            enableCheckButton();
+          };
+          grid.appendChild(btn);
+        });
+        container.appendChild(grid);
+      } 
+      else if (q.type === "typing") {
+        const wrap = document.createElement('div');
+        wrap.className = 'typing-container';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'typing-input';
+        input.placeholder = 'Digite a resposta aqui...';
+        input.autocomplete = 'off';
+        input.oninput = (e) => {
+          selectedOrTypedValue = e.target.value.trim();
+          if (selectedOrTypedValue.length > 0) enableCheckButton();
+          else disableCheckButton();
+        };
+        // Permitir dar Enter para verificar
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter" && !checkBtn.disabled) {
+            event.preventDefault();
+            checkAnswer();
+          }
+        });
+        wrap.appendChild(input);
+        container.appendChild(wrap);
+        
+        // Focar no input automaticamente (em desktop)
+        setTimeout(() => input.focus(), 100);
+      }
     }
 
-    function selectOption(index, element) {
-      selectedOption = index;
-      const options = document.querySelectorAll('.option-card');
-      options.forEach(opt => opt.classList.remove('selected'));
-      element.classList.add('selected');
-
-      const checkBtn = document.getElementById('check-btn');
-      checkBtn.className = 'btn btn-green';
+    function enableCheckButton() {
+      const btn = document.getElementById('check-btn');
+      btn.className = 'btn btn-green';
+      btn.disabled = false;
+    }
+    function disableCheckButton() {
+      const btn = document.getElementById('check-btn');
+      btn.className = 'btn btn-gray';
+      btn.disabled = true;
     }
 
     function checkAnswer() {
-      if (selectedOption === null) return;
+      const q = currentQuiz[currentIndex];
+      const panel = document.getElementById('feedback-panel');
+      const title = document.getElementById('feedback-title');
+      const msg = document.getElementById('feedback-msg');
+      const nextBtn = document.getElementById('next-btn');
 
-      const q = questions[currentQuestionIndex];
-      const feedbackPanel = document.getElementById('feedback-panel');
-      const feedbackTitle = document.getElementById('feedback-title');
-      const feedbackMsg = document.getElementById('feedback-msg');
+      let isCorrect = false;
 
-      if (selectedOption === q.correct) {
-        xp += 10;
-        document.getElementById('xp-count').innerText = xp;
-        feedbackPanel.className = 'feedback-panel correct';
-        feedbackTitle.innerText = 'Excelente! 🎉';
-        feedbackMsg.innerText = q.explanation;
+      if (q.type === "choice") {
+        isCorrect = (selectedOrTypedValue === q.correct);
       } else {
+        // Typing check (case insensitive, tolerando pequenas variações de acento nas opções corretas)
+        const typed = selectedOrTypedValue.toLowerCase();
+        isCorrect = q.correct.some(ans => ans.toLowerCase() === typed);
+      }
+
+      panel.style.display = 'flex';
+      nextBtn.innerText = 'CONTINUAR';
+
+      if (isCorrect) {
+        score++;
+        panel.className = 'feedback-panel correct';
+        title.innerHTML = '✔️ Correto!';
+        msg.innerText = q.exp;
+        nextBtn.className = 'btn btn-green';
+      } else {
+        // Reduzir vida
         lives--;
         document.getElementById('lives-count').innerText = lives;
-        feedbackPanel.className = 'feedback-panel incorrect';
-        feedbackTitle.innerText = 'Resposta Incorreta!';
-        feedbackMsg.innerText = `Resposta certa: "${q.options[q.correct]}". ${q.explanation}`;
+        
+        // Animação de erro na tela
+        const quizScreen = document.getElementById('quiz-screen');
+        quizScreen.classList.remove('shake-anim');
+        void quizScreen.offsetWidth; // trigger reflow
+        quizScreen.classList.add('shake-anim');
+
+        // Adicionar tópico à lista de erros para o resumo final
+        mistakes.push(q.topic);
+
+        panel.className = 'feedback-panel incorrect';
+        title.innerHTML = '❌ Incorreto!';
+        const corretaText = q.type === "choice" ? q.correct : q.correct[0];
+        msg.innerHTML = `<strong>A resposta correta era:</strong> ${corretaText}<br><br>${q.exp}`;
+        nextBtn.className = 'btn btn-red';
       }
+
+      // Esconder botão Verificar para evitar múltiplos cliques
+      document.getElementById('check-btn').style.display = 'none';
+      
+      // Focar no botão Continuar para permitir 'Enter'
+      setTimeout(() => nextBtn.focus(), 100);
     }
 
     function nextQuestion() {
+      document.getElementById('check-btn').style.display = 'block';
+
       if (lives <= 0) {
-        alert('Ficaste sem vidas! Recarrega a página para tentar novamente.');
-        lives = 5;
-        document.getElementById('lives-count').innerText = lives;
-        showScreen('home');
+        alert("Ficaste sem vidas! A tua lição foi interrompida.");
+        location.reload();
         return;
       }
 
-      currentQuestionIndex++;
-      if (currentQuestionIndex >= questions.length) {
-        alert(`Parabéns! Completaste a lição e ganhaste ${xp} XP!`);
-        showScreen('home');
+      currentIndex++;
+      if (currentIndex >= currentQuiz.length) {
+        showResultScreen();
       } else {
         loadQuestion();
+      }
+    }
+
+    function showResultScreen() {
+      document.getElementById('quiz-screen').style.display = 'none';
+      document.getElementById('feedback-panel').style.display = 'none';
+      document.getElementById('result-screen').style.display = 'flex';
+      document.getElementById('btn-jogar-top').style.display = 'none';
+
+      document.getElementById('score-text').innerText = `${score} de ${currentQuiz.length}`;
+
+      const diagArea = document.getElementById('diagnostic-area');
+      diagArea.innerHTML = '';
+
+      if (mistakes.length === 0) {
+        diagArea.innerHTML = `
+          <div class="diagnostic-box" style="border-color: var(--green);">
+            <h3 style="color: var(--green); text-align:center;">🏆 Perfeito!</h3>
+            <p style="text-align:center;">Dominaste completamente todos os tópicos da prova! Não erraste nenhuma questão.</p>
+          </div>
+        `;
+      } else {
+        // Remover duplicados da lista de erros
+        const uniqueMistakes = [...new Set(mistakes)];
+        
+        const explanations = {
+          imperfecto: "<strong>Pretérito Imperfeito:</strong> Precisas rever as terminações regulares (-aba, -ía) e memorizar os 3 irregulares (Ir, Ser, Ver).",
+          indefinido: "<strong>Pretérito Indefinido:</strong> Foca na conjugação de ações concluídas no passado e nos irregulares importantes (Hacer, Ser/Ir, Tener).",
+          contraste: "<strong>Contraste entre Pretéritos:</strong> Lembra-te: o Imperfecto faz o cenário (o que estava a acontecer), o Indefinido é a ação pontual que corta a cena.",
+          vocabulario: "<strong>Vocabulário:</strong> É bom dar uma relida nas palavras básicas das etapas 1, 2 e 3 (animais, casa, escola).",
+          conjunciones: "<strong>Conjunções:</strong> Presta atenção nas regras de troca fonética (y->e, o->u) e na diferença entre 'pero' (mas) e 'sino' (mas sim).",
+          guernica: "<strong>Guernica (Picasso):</strong> Relembra os simbolismos da obra cubista (o Touro e o Cavalo) e o ano (1937)."
+        };
+
+        let ulHTML = "<ul>";
+        uniqueMistakes.forEach(topic => {
+          ulHTML += `<li style="margin-bottom:8px;">${explanations[topic]}</li>`;
+        });
+        ulHTML += "</ul>";
+
+        diagArea.innerHTML = `
+          <div class="diagnostic-box">
+            <h3>⚠️ O que precisas de melhorar:</h3>
+            ${ulHTML}
+          </div>
+        `;
       }
     }
   </script>
