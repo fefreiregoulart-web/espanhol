@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -160,6 +160,7 @@
       line-height: 1.6;
     }
     .summary-card ul { padding-left: 20px; }
+    .summary-card em { font-weight: bold; color: var(--text-dark); }
 
     /* Tabelas Responsivas para Celular */
     .table-responsive {
@@ -388,7 +389,7 @@
     <div id="theory-screen">
       <div class="theory-header">
         <h2>📘 Manual de Estudos</h2>
-        <p>Revise a teoria ou clique em <strong>JOGAR</strong> lá em cima para testar seus conhecimentos!</p>
+        <p>Revê a teoria ou clica em <strong>JOGAR</strong> no topo para testar os teus conhecimentos!</p>
       </div>
 
       <div class="summary-card">
@@ -430,22 +431,45 @@
       </div>
 
       <div class="summary-card">
-        <h3>4. Conjunciones</h3>
+        <h3>4. Vocabulário (As 3 Etapas)</h3>
+        
+        <p><strong>🎬 Termos de Cinema e Teatro:</strong></p>
         <ul>
-          <li><strong>y -> e:</strong> Troca-se antes de palavras com som de "i" ou "hi". Ex: <em>Padre <strong>e</strong> hijo</em>.</li>
-          <li><strong>o -> u:</strong> Troca-se antes de palavras com som de "o" ou "ho". Ex: <em>Siete <strong>u</strong> ocho</em>.</li>
-          <li><strong>Adversativas:</strong> <em>pero</em> (mas/porém), <em>sino</em> (mas sim/pelo contrário).</li>
-          <li><strong>Causais:</strong> <em>porque</em>, <em>ya que</em>.</li>
+          <li><em>Butaca</em> = Poltrona</li>
+          <li><em>Taquilla</em> = Bilheteira (Bilheteria)</li>
+          <li><em>En cartelera</em> = Em cartaz</li>
+          <li><em>Guion / Guionista</em> = Roteiro / Roteirista</li>
+          <li><em>Cortometraje / Largometraje</em> = Curta-metragem / Longa-metragem</li>
+          <li><em>Cola</em> = Fila</li>
+        </ul>
+
+        <p><strong>⚠️ Falsos Amigos (Rasteiras!):</strong></p>
+        <ul>
+          <li><em>Pantalla</em> (Ecrã/Tela de cinema) ≠ <em>Tela</em> (Tecido)</li>
+          <li><em>Escena</em> (Cena de filme) ≠ <em>Cena</em> (Jantar)</li>
+          <li><em>Subtítulo</em> (Legenda) ≠ <em>Leyenda</em> (Lenda)</li>
+          <li><em>Chiste</em> (Piada) ≠ <em>Chisme</em> (Fofoca)</li>
+          <li><em>Palco</em> (Camarote) ≠ <em>Escenario</em> (Palco ou Cenário)</li>
+          <li><em>Campana</em> (Sino) ≠ <em>Sino</em> (Conjunção: "Mas sim")</li>
+        </ul>
+
+        <p><strong>🌳 Outros Termos Comuns:</strong></p>
+        <ul>
+          <li><em>Gafas / Anteojos</em> = Óculos</li>
+          <li><em>Cerdo / Puerco</em> = Porco</li>
+          <li><em>Piso</em> = Apartamento (América Latina: Departamento)</li>
+          <li><em>Vereda / Acera</em> = Calçada</li>
+          <li><em>El hecho</em> = O acontecimento / facto</li>
         </ul>
       </div>
 
       <div class="summary-card">
-        <h3>5. Obra: Guernica</h3>
+        <h3>5. Conjunciones</h3>
         <ul>
-          <li><strong>Autor e Ano:</strong> Pablo Picasso, 1937.</li>
-          <li><strong>Estilo:</strong> Cubismo (preto, branco, cinza).</li>
-          <li><strong>O Touro (Toro):</strong> Simboliza a brutalidade, fascismo e a escuridão.</li>
-          <li><strong>O Cavalo (Caballo):</strong> Simboliza o povo inocente em agonia.</li>
+          <li><strong>y -> e:</strong> Troca-se antes de palavras com som de "i" ou "hi". Ex: <em>Padre <strong>e</strong> hijo</em>.</li>
+          <li><strong>o -> u:</strong> Troca-se antes de palavras com som de "o" ou "ho". Ex: <em>Siete <strong>u</strong> ocho</em>.</li>
+          <li><strong>Adversativas:</strong> <em>pero</em> (mas/porém), <em>sino</em> (mas sim/pelo contrário - exclui a ideia anterior). Ex: <em>No es grande sino pequeño.</em></li>
+          <li><strong>Causais:</strong> <em>porque</em>, <em>ya que</em>.</li>
         </ul>
       </div>
     </div>
@@ -475,7 +499,7 @@
     <div id="result-screen">
       <div class="result-owl">🎉🦉</div>
       <h2>Lição Concluída!</h2>
-      <p style="font-size: 1.2rem;">Você acertou <strong id="score-text"></strong> questões!</p>
+      <p style="font-size: 1.2rem;">Acertaste <strong id="score-text"></strong> questões!</p>
       
       <div id="diagnostic-area" style="width: 100%;"></div>
 
@@ -495,49 +519,42 @@
   </div>
 
   <script>
-    // BANCO DE DADOS DINÂMICO (5 perguntas por conteúdo)
+    // BANCO DE DADOS DINÂMICO (5 perguntas por conteúdo - 5 tópicos)
     const questionPool = {
       imperfecto: [
         { type: "choice", q: "Qual é a forma correta do verbo 'Hablar' para Yo no Pretérito Imperfecto?", options: ["habló", "hablaba", "hablé"], correct: "hablaba", exp: "Terminações -AR no imperfecto usam -aba." },
         { type: "choice", q: "Como se conjuga o verbo irregular 'Ser' para Tú no Imperfecto?", options: ["fuiste", "eres", "eras"], correct: "eras", exp: "Ser é irregular: era, eras, era..." },
-        { type: "typing", q: "Escreva a forma correta: Nosotros ________ (vivir) en Madrid.", correct: ["vivíamos", "viviamos"], exp: "Verbos terminados em -IR usam a terminação -íamos." },
+        { type: "typing", q: "Escreve a forma correta: Nosotros ________ (vivir) en Madrid.", correct: ["vivíamos", "viviamos"], exp: "Verbos terminados em -IR usam a terminação -íamos." },
         { type: "choice", q: "Como fica o verbo 'Ver' para Yo no Imperfecto?", options: ["veía", "vía", "vi"], correct: "veía", exp: "Ver é um dos 3 irregulares: veía, veías..." },
-        { type: "typing", q: "Escreva a forma correta do verbo Ir: Ellos ________ (ir) al cine los domingos.", correct: ["iban"], exp: "Ir é irregular: iba, ibas, iba, íbamos, ibais, iban." }
+        { type: "typing", q: "Escreve a forma correta do verbo Ir: Ellos ________ (ir) al cine los domingos.", correct: ["iban"], exp: "Ir é irregular: iba, ibas, iba, íbamos, ibais, iban." }
       ],
       indefinido: [
         { type: "choice", q: "Ayer yo ________ (hablar) con mi madre.", options: ["hablaba", "hablo", "hablé"], correct: "hablé", exp: "'Ayer' indica uma ação pontual no passado (Indefinido)." },
-        { type: "typing", q: "Escreva a resposta: El año pasado él ________ (comer) paella.", correct: ["comió", "comio"], exp: "Terceira pessoa do singular no indefinido termina em -ió." },
+        { type: "typing", q: "Escreve a resposta: El año pasado él ________ (comer) paella.", correct: ["comió", "comio"], exp: "A terceira pessoa do singular no indefinido termina em -ió." },
         { type: "choice", q: "Como é o verbo irregular 'Hacer' para Yo no Indefinido?", options: ["hacía", "hice", "hizo"], correct: "hice", exp: "Hacer é irregular: hice, hiciste, hizo..." },
-        { type: "typing", q: "Escreva a forma correta do verbo Ser/Ir: Nosotros ________ al parque ayer.", correct: ["fuimos"], exp: "Ser e Ir partilham a mesma forma: fui, fuiste, fue, fuimos..." },
+        { type: "typing", q: "Escreve a forma correta do verbo Ser/Ir: Nosotros ________ al parque ayer.", correct: ["fuimos"], exp: "Ser e Ir partilham a mesma forma: fui, fuiste, fue, fuimos..." },
         { type: "choice", q: "Tú ________ (tener) que estudiar anoche.", options: ["tuviste", "tenías", "tuvieses"], correct: "tuviste", exp: "Tener é irregular no indefinido: tuve, tuviste, tuvo..." }
       ],
       contraste: [
         { type: "choice", q: "Yo ________ (estudiar) cuando el teléfono ________ (sonar).", options: ["estudié / sonaba", "estudiaba / sonó", "estudio / sonó"], correct: "estudiaba / sonó", exp: "O Imperfecto (estudiaba) é o cenário, o Indefinido (sonó) é a interrupção." },
-        { type: "choice", q: "Mientras él ________ (dormir), el ladrón entró.", options: ["durmió", "dormía", "duerme"], correct: "dormía", exp: "Ação que estava a decorrer ao fundo pede o Imperfecto." },
-        { type: "typing", q: "Complete com o verbo no Indefinido: Nosotros caminábamos cuando ________ (empezar) a llover.", correct: ["empezó", "empezo"], exp: "A ação que interrompe a caminhada é pontual, logo é Indefinido." },
-        { type: "typing", q: "Complete com o verbo no Imperfecto: ________ (llover) mucho cuando salí de casa.", correct: ["llovía", "llovia"], exp: "A chuva era a condição climática de fundo (Imperfecto)." },
+        { type: "choice", q: "Mientras él ________ (dormir), el ladrón entró.", options: ["durmió", "dormía", "duerme"], correct: "dormía", exp: "Uma ação que estava a decorrer em pano de fundo pede o Imperfecto." },
+        { type: "typing", q: "Completa com o verbo no Indefinido: Nosotros caminábamos cuando ________ (empezar) a llover.", correct: ["empezó", "empezo"], exp: "A ação que interrompe a caminhada é pontual, logo é Indefinido." },
+        { type: "typing", q: "Completa com o verbo no Imperfecto: ________ (llover) mucho cuando salí de casa.", correct: ["llovía", "llovia"], exp: "A chuva era a condição climática de fundo (Imperfecto)." },
         { type: "choice", q: "Ana ________ (ver) la tele cuando su madre llegó.", options: ["vio", "veía", "vía"], correct: "veía", exp: "Ação em andamento (Imperfecto) interrompida pela chegada (Indefinido)." }
       ],
       vocabulario: [
-        { type: "choice", q: "¿Qué significa 'Desayuno'?", options: ["Almoço", "Jantar", "Café da manhã"], correct: "Café da manhã", exp: "Desayuno é a primeira refeição do dia." },
-        { type: "typing", q: "Traduza a palavra 'Janela' para espanhol:", correct: ["ventana"], exp: "Janela em espanhol é Ventana." },
-        { type: "choice", q: "¿Qué significa 'Perro'?", options: ["Gato", "Cachorro/Cão", "Pássaro"], correct: "Cachorro/Cão", exp: "Perro significa cachorro ou cão em português." },
-        { type: "typing", q: "Traduza a palavra 'Mesa' para espanhol:", correct: ["mesa"], exp: "Escreve-se da mesma forma nos dois idiomas." },
-        { type: "choice", q: "¿Qué significa 'Oficina'?", options: ["Oficina mecânica", "Escritório", "Quarto"], correct: "Escritório", exp: "Oficina é um falso cognato e significa Escritório." }
+        { type: "choice", q: "O que significa a palavra 'Pantalla' em espanhol?", options: ["Tecido para roupas", "Tela (Ecrã de cinema/TV)", "Cenário de teatro"], correct: "Tela (Ecrã de cinema/TV)", exp: "Falso amigo! 'Pantalla' é a tela do cinema. 'Tela' em espanhol significa tecido." },
+        { type: "typing", q: "Qual é a tradução da palavra 'Poltrona' para espanhol (muito usada em cinemas)?", correct: ["butaca"], exp: "Butaca significa poltrona (de cinema ou teatro)." },
+        { type: "choice", q: "Qual é a diferença entre 'Chiste' e 'Chisme'?", options: ["Chiste = Piada, Chisme = Fofoca", "Chiste = Fofoca, Chisme = Piada", "São sinónimos (ambos significam piada)"], correct: "Chiste = Piada, Chisme = Fofoca", exp: "Mais um falso amigo! Lembra-te: Chiste é para rir (piada), Chisme é para coscuvilhar (fofoca)." },
+        { type: "typing", q: "Como se escreve a palavra 'Óculos' em espanhol (começa com G)?", correct: ["gafas"], exp: "Óculos em espanhol pode ser 'gafas' ou 'anteojos'." },
+        { type: "choice", q: "Se queres comprar um bilhete, deves ir à...", options: ["Cartelera", "Butaca", "Taquilla"], correct: "Taquilla", exp: "Taquilla significa bilheteira (ou bilheteria no Brasil). Cartelera significa 'em cartaz'." }
       ],
       conjunciones: [
         { type: "choice", q: "Qual a conjunção correta? Agujas ________ hilos.", options: ["y", "e", "u"], correct: "e", exp: "Antes de palavras iniciadas com som de 'i' ou 'hi', troca-se 'y' por 'e'." },
-        { type: "typing", q: "Complete com a conjunção correta (o / u): Siete ________ ocho.", correct: ["u"], exp: "Antes de palavras iniciadas com som de 'o' ou 'ho', troca-se 'o' por 'u'." },
-        { type: "choice", q: "No es rojo, ________ azul. (mas sim)", options: ["pero", "sino", "porque"], correct: "sino", exp: "Sino é usado para opor e corrigir uma afirmação negativa anterior." },
-        { type: "typing", q: "Complete: Estudié mucho, ________ no aprobé. (mas / porém)", correct: ["pero"], exp: "Pero significa 'mas' ou 'porém'." },
+        { type: "typing", q: "Completa com a conjunção correta (o / u): Siete ________ ocho.", correct: ["u"], exp: "Antes de palavras iniciadas com som de 'o' ou 'ho', troca-se 'o' por 'u'." },
+        { type: "choice", q: "Este libro no es grande, ________ pequeño. (mas sim)", options: ["pero", "sino", "porque"], correct: "sino", exp: "Sino é usado para opor e corrigir uma afirmação negativa anterior ('mas sim')." },
+        { type: "typing", q: "Completa: Estudié mucho, ________ no aprobé. (mas / porém)", correct: ["pero"], exp: "Pero significa 'mas' ou 'porém'." },
         { type: "choice", q: "Lo hago ________ quiero. (causa)", options: ["ya que", "pero", "porque"], correct: "porque", exp: "Porque explica a causa da ação." }
-      ],
-      guernica: [
-        { type: "choice", q: "Quem é o autor da obra Guernica?", options: ["Salvador Dalí", "Pablo Picasso", "Diego Velázquez"], correct: "Pablo Picasso", exp: "Pablo Picasso pintou esta obra icónica em 1937." },
-        { type: "typing", q: "Em espanhol, que animal na obra simboliza a brutalidade e o fascismo?", correct: ["toro"], exp: "El toro (o touro) representa a escuridão e a brutalidade." },
-        { type: "choice", q: "Qual é o estilo artístico da obra Guernica?", options: ["Surrealismo", "Realismo", "Cubismo"], correct: "Cubismo", exp: "É uma das obras cubistas mais famosas do mundo." },
-        { type: "typing", q: "Em que ano a obra Guernica foi pintada?", correct: ["1937"], exp: "Foi pintada em 1937 durante a Guerra Civil Espanhola." },
-        { type: "choice", q: "O que o Cavalo (Caballo) representa na pintura?", options: ["O povo inocente em sofrimento", "A esperança", "O governo"], correct: "O povo inocente em sofrimento", exp: "O cavalo agonizante representa a dor do povo de Guernica." }
       ]
     };
 
@@ -576,10 +593,10 @@
       topics.forEach(topic => {
         const questionsArray = questionPool[topic];
         const randomQ = questionsArray[Math.floor(Math.random() * questionsArray.length)];
-        currentQuiz.push({ ...randomQ, topic }); // Guarda o tópico para o diagnóstico final
+        currentQuiz.push({ ...randomQ, topic }); 
       });
 
-      // Embaralhar as 6 perguntas
+      // Baralhar as perguntas
       currentQuiz = currentQuiz.sort(() => Math.random() - 0.5);
       
       currentIndex = 0;
@@ -610,7 +627,7 @@
       container.innerHTML = '';
 
       if (q.type === "choice") {
-        // Embaralhar opções localmente
+        // Baralhar opções localmente
         const optionsShuffled = [...q.options].sort(() => Math.random() - 0.5);
         const grid = document.createElement('div');
         grid.className = 'options-grid';
@@ -636,7 +653,7 @@
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'typing-input';
-        input.placeholder = 'Digite a resposta aqui...';
+        input.placeholder = 'Escreve a resposta aqui...';
         input.autocomplete = 'off';
         input.oninput = (e) => {
           selectedOrTypedValue = e.target.value.trim();
@@ -681,7 +698,7 @@
       if (q.type === "choice") {
         isCorrect = (selectedOrTypedValue === q.correct);
       } else {
-        // Typing check (case insensitive, tolerando pequenas variações de acento nas opções corretas)
+        // Typing check (case insensitive, tolerando pequenas variações)
         const typed = selectedOrTypedValue.toLowerCase();
         isCorrect = q.correct.some(ans => ans.toLowerCase() === typed);
       }
@@ -700,7 +717,7 @@
         lives--;
         document.getElementById('lives-count').innerText = lives;
         
-        // Animação de erro na tela
+        // Animação de erro no ecrã
         const quizScreen = document.getElementById('quiz-screen');
         quizScreen.classList.remove('shake-anim');
         void quizScreen.offsetWidth; // trigger reflow
@@ -716,7 +733,7 @@
         nextBtn.className = 'btn btn-red';
       }
 
-      // Esconder botão Verificar para evitar múltiplos cliques
+      // Esconder botão Verificar para evitar cliques múltiplos
       document.getElementById('check-btn').style.display = 'none';
       
       // Focar no botão Continuar para permitir 'Enter'
@@ -763,12 +780,11 @@
         const uniqueMistakes = [...new Set(mistakes)];
         
         const explanations = {
-          imperfecto: "<strong>Pretérito Imperfeito:</strong> Precisas rever as terminações regulares (-aba, -ía) e memorizar os 3 irregulares (Ir, Ser, Ver).",
-          indefinido: "<strong>Pretérito Indefinido:</strong> Foca na conjugação de ações concluídas no passado e nos irregulares importantes (Hacer, Ser/Ir, Tener).",
+          imperfecto: "<strong>Pretérito Imperfeito:</strong> Precisas de rever as terminações regulares (-aba, -ía) e memorizar os 3 irregulares (Ir, Ser, Ver).",
+          indefinido: "<strong>Pretérito Indefinido:</strong> Foca-te na conjugação de ações concluídas no passado e nos irregulares importantes (Hacer, Ser/Ir, Tener).",
           contraste: "<strong>Contraste entre Pretéritos:</strong> Lembra-te: o Imperfecto faz o cenário (o que estava a acontecer), o Indefinido é a ação pontual que corta a cena.",
-          vocabulario: "<strong>Vocabulário:</strong> É bom dar uma relida nas palavras básicas das etapas 1, 2 e 3 (animais, casa, escola).",
-          conjunciones: "<strong>Conjunções:</strong> Presta atenção nas regras de troca fonética (y->e, o->u) e na diferença entre 'pero' (mas) e 'sino' (mas sim).",
-          guernica: "<strong>Guernica (Picasso):</strong> Relembra os simbolismos da obra cubista (o Touro e o Cavalo) e o ano (1937)."
+          vocabulario: "<strong>Vocabulário:</strong> Tens de rever os termos de cinema/teatro e prestar muita atenção aos Falsos Amigos das tuas notas (ex: cena vs escena, pantalla vs tela, chiste vs chisme).",
+          conjunciones: "<strong>Conjunções:</strong> Presta atenção nas regras de troca fonética (y->e, o->u) e na diferença entre 'pero' (mas) e 'sino' (mas sim, para corrigir negações)."
         };
 
         let ulHTML = "<ul>";
