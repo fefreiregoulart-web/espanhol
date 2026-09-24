@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EspanholLingo - Prova</title>
+  <title>EspanholLingo - Preparação para Prova</title>
   <style>
     :root {
       --green: #58cc02;
@@ -37,7 +37,6 @@
       min-height: 100vh;
     }
 
-    /* Cabeçalho Fixo */
     header {
       border-bottom: 2px solid var(--gray-border);
       padding: 12px 24px;
@@ -67,12 +66,16 @@
 
     .stats {
       display: flex;
-      gap: 15px;
-      font-weight: bold;
+      gap: 12px;
+      align-items: center;
+      font-weight: 900;
       font-size: 1.1rem;
+      background: var(--gray-light);
+      padding: 6px 14px;
+      border-radius: 12px;
+      border: 2px solid var(--gray-border);
     }
 
-    /* Botões Padrão */
     .btn {
       border: none;
       padding: 12px 24px;
@@ -116,7 +119,6 @@
       cursor: not-allowed;
     }
 
-    /* Container Principal */
     main {
       flex: 1;
       max-width: 800px;
@@ -127,7 +129,6 @@
       flex-direction: column;
     }
 
-    /* --- TELA DE TEORIA (Padrão) --- */
     #theory-screen {
       display: flex;
       flex-direction: column;
@@ -162,7 +163,6 @@
     .summary-card ul { padding-left: 20px; }
     .summary-card em { font-weight: bold; color: var(--text-dark); }
 
-    /* Tabelas Responsivas para Celular */
     .table-responsive {
       width: 100%;
       overflow-x: auto;
@@ -174,7 +174,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 400px;
+      min-width: 480px;
     }
 
     th, td {
@@ -185,7 +185,6 @@
     th { background-color: var(--gray-light); }
     tr:last-child td { border-bottom: none; }
 
-    /* --- TELA DE QUIZ --- */
     #quiz-screen {
       display: none;
       flex-direction: column;
@@ -221,7 +220,6 @@
       font-weight: 800;
     }
 
-    /* Opções Múltipla Escolha */
     .options-grid {
       display: flex;
       flex-direction: column;
@@ -249,7 +247,6 @@
       color: var(--blue-shadow);
     }
 
-    /* Campo de Digitar */
     .typing-container {
       display: flex;
       flex-direction: column;
@@ -271,7 +268,6 @@
       background-color: #fff;
     }
 
-    /* Área Inferior (Check) */
     .quiz-bottom {
       border-top: 2px solid var(--gray-border);
       padding: 20px 0;
@@ -280,7 +276,6 @@
       justify-content: flex-end;
     }
 
-    /* Painel de Feedback Animado */
     .feedback-panel {
       position: fixed;
       bottom: 0;
@@ -327,7 +322,6 @@
       line-height: 1.4;
     }
 
-    /* --- TELA DE RESULTADO --- */
     #result-screen {
       display: none;
       flex-direction: column;
@@ -351,7 +345,6 @@
     .diagnostic-box h3 { color: var(--red); margin-bottom: 10px; }
     .diagnostic-box ul { padding-left: 20px; line-height: 1.6; }
 
-    /* Animações */
     @keyframes slideUp {
       from { transform: translateY(100%); }
       to { transform: translateY(0); }
@@ -373,36 +366,37 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO COM BOTÃO JOGAR -->
   <header>
     <div class="logo" onclick="location.reload()" style="cursor:pointer;">🦉 EspanholLingo</div>
     <div class="header-actions">
-      <div class="stats">
-        <span style="color: var(--red);">❤️ <span id="lives-count">5</span></span>
+      <div class="stats" id="game-stats" style="display: none;">
+        <span style="color: var(--green-text);">✔️ <span id="correct-count">0</span></span>
+        <span style="color: #ccc;">|</span>
+        <span style="color: var(--red);">❌ <span id="incorrect-count">0</span></span>
       </div>
       <button class="btn btn-green" id="btn-jogar-top" onclick="startQuiz()">JOGAR</button>
     </div>
   </header>
 
   <main>
-    <!-- TELA DE TEORIA (Aparece ao entrar) -->
     <div id="theory-screen">
       <div class="theory-header">
         <h2>📘 Manual de Estudos</h2>
-        <p>Revê a teoria ou clica em <strong>JOGAR</strong> no topo para testar os teus conhecimentos!</p>
+        <p>Revise a teoria abaixo ou clique em <strong>JOGAR</strong> no topo para praticar!</p>
       </div>
 
       <div class="summary-card">
         <h3>1. Pretérito Imperfecto de Indicativo</h3>
-        <p><strong>Uso:</strong> Ações rotineiras no passado, descrições e "cenários" de fundo.</p>
+        <p><strong>Uso:</strong> Ações habituais/rotineiras no passado, descrições e cenários de fundo.</p>
         <div class="table-responsive">
           <table>
             <tr><th>Pessoa</th><th>-AR (Hablar)</th><th>-ER / -IR (Comer/Vivir)</th></tr>
             <tr><td>Yo</td><td>hablaba</td><td>comía / vivía</td></tr>
             <tr><td>Tú</td><td>hablabas</td><td>comías / vivías</td></tr>
             <tr><td>Él/Ella/Ud.</td><td>hablaba</td><td>comía / vivía</td></tr>
-            <tr><td>Nosotros</td><td>hablábamos</td><td>comíamos / vivíamos</td></tr>
-            <tr><td>Ellos/Uds.</td><td>hablaban</td><td>comían / vivían</td></tr>
+            <tr><td>Nosotros/as</td><td>hablábamos</td><td>comíamos / vivíamos</td></tr>
+            <tr><td>Vosotros/as</td><td>hablabais</td><td>comíais / vivíais</td></tr>
+            <tr><td>Ellos/Ellas/Uds.</td><td>hablaban</td><td>comían / vivían</td></tr>
           </table>
         </div>
         <p><strong>Irregulares:</strong> Ser (era, eras...), Ir (iba, ibas...), Ver (veía, veías...).</p>
@@ -410,42 +404,42 @@
 
       <div class="summary-card">
         <h3>2. Pretérito Indefinido (Perfecto Simple)</h3>
-        <p><strong>Uso:</strong> Ações pontuais, finalizadas no passado num tempo específico (ayer, anoche).</p>
+        <p><strong>Uso:</strong> Ações pontuais, finalizadas no passado em um tempo determinado (ayer, anoche).</p>
         <div class="table-responsive">
           <table>
             <tr><th>Pessoa</th><th>-AR (Hablar)</th><th>-ER / -IR (Comer/Vivir)</th></tr>
             <tr><td>Yo</td><td>hablé</td><td>comí / viví</td></tr>
             <tr><td>Tú</td><td>hablaste</td><td>comiste / viviste</td></tr>
             <tr><td>Él/Ella/Ud.</td><td>habló</td><td>comió / vivió</td></tr>
-            <tr><td>Nosotros</td><td>hablamos</td><td>comimos / vivimos</td></tr>
-            <tr><td>Ellos/Uds.</td><td>hablaron</td><td>comieron / vivieron</td></tr>
+            <tr><td>Nosotros/as</td><td>hablamos</td><td>comimos / vivimos</td></tr>
+            <tr><td>Vosotros/as</td><td>hablasteis</td><td>comisteis / vivisteis</td></tr>
+            <tr><td>Ellos/Ellas/Uds.</td><td>hablaron</td><td>comieron / vivieron</td></tr>
           </table>
         </div>
-        <p><strong>Irregulares:</strong> Ser/Ir (fui), Hacer (hice), Tener (tuve).</p>
+        <p><strong>Irregulares:</strong> Ser/Ir (fui, fuiste, fue...), Hacer (hice, hiciste...), Tener (tuve, tuviste...).</p>
       </div>
 
       <div class="summary-card">
         <h3>3. Contraste: Indefinido vs Imperfecto</h3>
-        <p>O <strong>Imperfecto</strong> descreve a ação que estava a acontecer (fundo), e o <strong>Indefinido</strong> descreve a ação pontual que a interrompeu.</p>
+        <p>O <strong>Imperfecto</strong> descreve a ação contínua de fundo, enquanto o <strong>Indefinido</strong> representa a ação pontual que a interrompeu.</p>
         <p><em>Ex: "Yo <strong>estudiaba</strong> (imperfecto) cuando el teléfono <strong>sonó</strong> (indefinido)."</em></p>
       </div>
 
       <div class="summary-card">
-        <h3>4. Vocabulário (As 3 Etapas)</h3>
-        
-        <p><strong>🎬 Termos de Cinema e Teatro:</strong></p>
+        <h3>4. Vocabulário das 3 Etapas</h3>
+        <p><strong>🎬 Cinema e Teatro:</strong></p>
         <ul>
           <li><em>Butaca</em> = Poltrona</li>
-          <li><em>Taquilla</em> = Bilheteira (Bilheteria)</li>
+          <li><em>Taquilla</em> = Bilheteria</li>
           <li><em>En cartelera</em> = Em cartaz</li>
           <li><em>Guion / Guionista</em> = Roteiro / Roteirista</li>
           <li><em>Cortometraje / Largometraje</em> = Curta-metragem / Longa-metragem</li>
           <li><em>Cola</em> = Fila</li>
         </ul>
 
-        <p><strong>⚠️ Falsos Amigos (Rasteiras!):</strong></p>
+        <p><strong>⚠️ Falsos Amigos & pegadinhas:</strong></p>
         <ul>
-          <li><em>Pantalla</em> (Ecrã/Tela de cinema) ≠ <em>Tela</em> (Tecido)</li>
+          <li><em>Pantalla</em> (Tela de cinema/TV) ≠ <em>Tela</em> (Tecido)</li>
           <li><em>Escena</em> (Cena de filme) ≠ <em>Cena</em> (Jantar)</li>
           <li><em>Subtítulo</em> (Legenda) ≠ <em>Leyenda</em> (Lenda)</li>
           <li><em>Chiste</em> (Piada) ≠ <em>Chisme</em> (Fofoca)</li>
@@ -453,13 +447,13 @@
           <li><em>Campana</em> (Sino) ≠ <em>Sino</em> (Conjunção: "Mas sim")</li>
         </ul>
 
-        <p><strong>🌳 Outros Termos Comuns:</strong></p>
+        <p><strong>🌳 Outras palavras do caderno:</strong></p>
         <ul>
           <li><em>Gafas / Anteojos</em> = Óculos</li>
           <li><em>Cerdo / Puerco</em> = Porco</li>
           <li><em>Piso</em> = Apartamento (América Latina: Departamento)</li>
           <li><em>Vereda / Acera</em> = Calçada</li>
-          <li><em>El hecho</em> = O acontecimento / facto</li>
+          <li><em>El hecho</em> = O fato / acontecimento</li>
         </ul>
       </div>
 
@@ -474,7 +468,6 @@
       </div>
     </div>
 
-    <!-- TELA DE QUIZ -->
     <div id="quiz-screen">
       <div>
         <div class="quiz-header">
@@ -484,9 +477,7 @@
 
         <div id="question-area">
           <h2 class="question-title" id="question-text">Pergunta...</h2>
-          <div id="input-container">
-            <!-- Botões ou Campo de texto injetados via JS -->
-          </div>
+          <div id="input-container"></div>
         </div>
       </div>
 
@@ -495,11 +486,10 @@
       </div>
     </div>
 
-    <!-- TELA DE RESULTADOS (DIAGNÓSTICO) -->
     <div id="result-screen">
       <div class="result-owl">🎉🦉</div>
       <h2>Lição Concluída!</h2>
-      <p style="font-size: 1.2rem;">Acertaste <strong id="score-text"></strong> questões!</p>
+      <p style="font-size: 1.2rem;">Você acertou <strong id="score-text"></strong> questões!</p>
       
       <div id="diagnostic-area" style="width: 100%;"></div>
 
@@ -509,7 +499,6 @@
 
   </main>
 
-  <!-- PAINEL DE FEEDBACK FIXO -->
   <div class="feedback-panel" id="feedback-panel">
     <div class="feedback-content">
       <div class="feedback-title" id="feedback-title"></div>
@@ -519,117 +508,83 @@
   </div>
 
   <script>
-    // BANCO DE DADOS DINÂMICO COMPLETAMENTE EXPANDIDO
     const questionPool = {
       imperfecto: [
         { type: "choice", q: "Qual é a forma correta do verbo 'Hablar' para Yo no Pretérito Imperfecto?", options: ["habló", "hablaba", "hablé"], correct: "hablaba", exp: "Terminações -AR no imperfecto usam -aba." },
-        { type: "choice", q: "Como se conjuga o verbo irregular 'Ser' para Tú no Imperfecto?", options: ["fuiste", "eres", "eras"], correct: "eras", exp: "Ser é irregular: era, eras, era..." },
-        { type: "typing", q: "Escreve a forma correta: Nosotros ________ (vivir) en Madrid.", correct: ["vivíamos", "viviamos"], exp: "Verbos terminados em -IR usam a terminação -íamos." },
+        { type: "choice", q: "Como se conjuga o verbo irregular 'Ser' para Tú no Imperfecto?", options: ["fuiste", "eres", "eras"], correct: "eras", exp: "Ser é irregular no Imperfecto: era, eras, era..." },
+        { type: "choice", q: "Qual é a forma correta do verbo 'Hablar' para Vosotros no Pretérito Imperfecto?", options: ["hablabais", "hablaban", "hablaríais"], correct: "hablabais", exp: "No Imperfecto, Vosotros para verbos -AR termina em -abais." },
+        { type: "typing", q: "Escreva a forma correta: Nosotros ________ (vivir) en Madrid.", correct: ["vivíamos", "viviamos"], exp: "Verbos terminados em -IR usam a terminação -íamos." },
         { type: "choice", q: "Como fica o verbo 'Ver' para Yo no Imperfecto?", options: ["veía", "vía", "vi"], correct: "veía", exp: "Ver é um dos 3 irregulares: veía, veías..." },
-        { type: "typing", q: "Escreve a forma correta do verbo Ir: Ellos ________ (ir) al cine los domingos.", correct: ["iban"], exp: "Ir é irregular: iba, ibas, iba, íbamos, ibais, iban." }
+        { type: "typing", q: "Escreva a forma correta do verbo Ir: Ellos ________ (ir) al cine los domingos.", correct: ["iban"], exp: "Ir é irregular: iba, ibas, iba, íbamos, ibais, iban." }
       ],
       indefinido: [
         { type: "choice", q: "Ayer yo ________ (hablar) con mi madre.", options: ["hablaba", "hablo", "hablé"], correct: "hablé", exp: "'Ayer' indica uma ação pontual no passado (Indefinido)." },
-        { type: "typing", q: "Escreve a resposta: El año pasado él ________ (comer) paella.", correct: ["comió", "comio"], exp: "A terceira pessoa do singular no indefinido termina em -ió." },
+        { type: "choice", q: "Como se conjuga 'Comer' para Vosotros no Pretérito Indefinido?", options: ["comíais", "comisteis", "comieron"], correct: "comisteis", exp: "No Indefinido, Vosotros para -ER/-IR termina em -isteis." },
+        { type: "typing", q: "Escreva a resposta: El año pasado él ________ (comer) paella.", correct: ["comió", "comio"], exp: "A 3ª pessoa do singular no indefinido para -ER termina em -ió." },
         { type: "choice", q: "Como é o verbo irregular 'Hacer' para Yo no Indefinido?", options: ["hacía", "hice", "hizo"], correct: "hice", exp: "Hacer é irregular: hice, hiciste, hizo..." },
-        { type: "typing", q: "Escreve a forma correta do verbo Ser/Ir: Nosotros ________ al parque ayer.", correct: ["fuimos"], exp: "Ser e Ir partilham a mesma forma: fui, fuiste, fue, fuimos..." },
+        { type: "typing", q: "Escreva a forma correta do verbo Ser/Ir: Nosotros ________ al parque ayer.", correct: ["fuimos"], exp: "Ser e Ir compartilham a mesma forma: fui, fuiste, fue, fuimos..." },
         { type: "choice", q: "Tú ________ (tener) que estudiar anoche.", options: ["tuviste", "tenías", "tuvieses"], correct: "tuviste", exp: "Tener é irregular no indefinido: tuve, tuviste, tuvo..." }
       ],
       contraste: [
-        { type: "choice", q: "Yo ________ (estudiar) cuando el teléfono ________ (sonar).", options: ["estudié / sonaba", "estudiaba / sonó", "estudio / sonó"], correct: "estudiaba / sonó", exp: "O Imperfecto (estudiaba) é o cenário, o Indefinido (sonó) é a interrupção." },
-        { type: "choice", q: "Mientras él ________ (dormir), el ladrón entró.", options: ["durmió", "dormía", "duerme"], correct: "dormía", exp: "Uma ação que estava a decorrer em pano de fundo pede o Imperfecto." },
-        { type: "typing", q: "Completa com o verbo no Indefinido: Nosotros caminábamos cuando ________ (empezar) a llover.", correct: ["empezó", "empezo"], exp: "A ação que interrompe a caminhada é pontual, logo é Indefinido." },
-        { type: "typing", q: "Completa com o verbo no Imperfecto: ________ (llover) mucho cuando salí de casa.", correct: ["llovía", "llovia"], exp: "A chuva era a condição climática de fundo (Imperfecto)." },
-        { type: "choice", q: "Ana ________ (ver) la tele cuando su madre llegó.", options: ["vio", "veía", "vía"], correct: "veía", exp: "Ação em andamento (Imperfecto) interrompida pela chegada (Indefinido)." }
+        { type: "choice", q: "Yo ________ (estudiar) cuando el teléfono ________ (sonar).", options: ["estudié / sonaba", "estudiaba / sonó", "estudio / sonó"], correct: "estudiaba / sonó", exp: "O Imperfecto (estudiaba) é a ação contínua; o Indefinido (sonó) é a interrupção." },
+        { type: "choice", q: "Mientras él ________ (dormir), el ladrón entró.", options: ["durmió", "dormía", "duerme"], correct: "dormía", exp: "Ação que ocorria em segundo plano exige o Imperfecto." },
+        { type: "typing", q: "Complete com o verbo no Indefinido: Nosotros caminábamos cuando ________ (empezar) a llover.", correct: ["empezó", "empezo"], exp: "A ação que interrompe a caminhada é pontual (Indefinido)." },
+        { type: "typing", q: "Complete com o verbo no Imperfecto: ________ (llover) mucho cuando salí de casa.", correct: ["llovía", "llovia"], exp: "A chuva era o contexto de fundo (Imperfecto)." },
+        { type: "choice", q: "Ana ________ (ver) la tele cuando su madre llegó.", options: ["vio", "veía", "vía"], correct: "veía", exp: "Ação contínua (Imperfecto) interrompida por outra (Indefinido)." }
       ],
       vocabulario: [
-        // Imagem 1 (Cinema e Teatro)
-        { type: "choice", q: "Qual é a tradução da palavra 'Poltrona' para espanhol (usada em cinemas)?", options: ["Butaca", "Silla", "Banqueta"], correct: "Butaca", exp: "Butaca significa poltrona." },
+        { type: "choice", q: "Qual é a tradução da palavra 'Poltrona' para espanhol (em cinema/teatro)?", options: ["Butaca", "Silla", "Banqueta"], correct: "Butaca", exp: "Butaca significa poltrona." },
         { type: "typing", q: "Como se escreve 'câmera' em espanhol?", correct: ["cámara", "camara"], exp: "A tradução correta é 'cámara'." },
         { type: "choice", q: "Se um filme está 'em cartaz', dizemos que ele está en...", options: ["Póster", "Cartelera", "Pantalla"], correct: "Cartelera", exp: "Estar em cartaz é estar 'en cartelera'." },
-        { type: "choice", q: "Em espanhol, se estás à espera para comprar um bilhete, estás na...", options: ["Fila / Cola", "Línea", "Rabo"], correct: "Fila / Cola", exp: "Podes usar 'cola' ou 'fila' para dizer que estás na fila." },
-        { type: "typing", q: "Como se diz 'Curta-metragem' em espanhol?", correct: ["cortometraje"], exp: "Curta-metragem = Cortometraje." },
-        { type: "typing", q: "Como se diz 'Longa-metragem' em espanhol?", correct: ["largometraje"], exp: "Longa-metragem = Largometraje." },
-        { type: "choice", q: "Qual destas palavras significa 'bilhete' de cinema, e NÃO 'renda' (dinheiro)?", options: ["Ingreso", "Entrada / Boleto", "Renda"], correct: "Entrada / Boleto", exp: "Entrada ou boleto = bilhete. Ingreso = renda (dinheiro)." },
-        { type: "choice", q: "Atenção aos falsos amigos! O que significa 'Escena'?", options: ["Jantar", "Cena de um filme", "Palco"], correct: "Cena de um filme", exp: "Escena é uma cena de um filme ou teatro." },
-        { type: "choice", q: "Se queres dizer 'jantar' em espanhol, dizes...", options: ["Escena", "Cena", "Almuerzo"], correct: "Cena", exp: "O jantar em espanhol diz-se 'cena'." },
-        { type: "choice", q: "O que significa 'Escenario'?", options: ["Escadaria", "Camarote", "Cenário ou palco"], correct: "Cenário ou palco", exp: "Escenario é o palco ou o cenário em si." },
-        { type: "typing", q: "Como se diz 'fileira' (ex: de cadeiras) em espanhol?", correct: ["fila"], exp: "Fileira traduz-se como 'fila'." },
-        { type: "typing", q: "Traduza a palavra 'Filmagem' para espanhol:", correct: ["filmación", "filmacion"], exp: "Filmagem = Filmación." },
-        { type: "choice", q: "A palavra espanhola para 'Roteiro/Guião' de um filme é...", options: ["Libreto", "Guion", "Ruta"], correct: "Guion", exp: "O roteiro de um filme chama-se 'guion'." },
-        { type: "typing", q: "A pessoa que escreve o guião (roteirista) chama-se...", correct: ["guionista"], exp: "Roteirista = Guionista." },
-        { type: "choice", q: "Cuidado com os falsos amigos! 'Palco' em espanhol significa...", options: ["Camarote", "Chão", "Escenario"], correct: "Camarote", exp: "'Palco' em espanhol é um camarote de teatro. Palco (lugar de atuar) é 'escenario'." },
-        { type: "choice", q: "A tela onde se projeta o filme chama-se...", options: ["Tela", "Pantalla", "Pizarra"], correct: "Pantalla", exp: "A tela do cinema ou ecrã da TV é 'pantalla'." },
-        { type: "choice", q: "O que significa a palavra espanhola 'Tela'?", options: ["Ecrã", "Teia de aranha", "Tecido"], correct: "Tecido", exp: "'Tela' é um falso amigo que significa 'tecido'." },
-        { type: "choice", q: "A palavra 'pasillo' refere-se a quê num cinema ou avião?", options: ["Corredor", "Assento", "Banheiro"], correct: "Corredor", exp: "El pasillo é o corredor." },
-        { type: "typing", q: "Como se diz 'legenda' de um filme em espanhol?", correct: ["subtítulo", "subtitulo"], exp: "Legenda de filme = Subtítulo." },
-        { type: "choice", q: "A palavra 'Leyenda' significa...", options: ["Legenda", "Lenda", "Leitura"], correct: "Lenda", exp: "'Leyenda' é um falso amigo que significa lenda (ex: mito)." },
-        { type: "typing", q: "O local onde se compram os bilhetes (bilheteira) é a...", correct: ["taquilla"], exp: "Bilheteira = Taquilla." },
-        { type: "choice", q: "A cortina do teatro chama-se...", options: ["Cortina", "Telón", "Alfombra"], correct: "Telón", exp: "A grande cortina de um palco é o 'telón'." },
-        { type: "choice", q: "A 'tomada' de um filme (gravação) diz-se...", options: ["Enchufe", "Toma", "Grabación"], correct: "Toma", exp: "Uma tomada de câmara é uma 'toma'. Toma elétrica é 'enchufe'." },
-        { type: "choice", q: "A tomada de eletricidade na parede chama-se...", options: ["Enchufe", "Toma", "Corriente"], correct: "Enchufe", exp: "A ficha/tomada elétrica é o 'enchufe'." },
-        { type: "choice", q: "Um filme que vende muitos bilhetes (sucesso de bilheteira) é considerado...", options: ["Taquillera", "Famosa", "Cara"], correct: "Taquillera", exp: "Usa-se o adjetivo 'taquillera' para um sucesso de bilheteira." },
-        { type: "choice", q: "A palavra 'densa' pode ser usada num filme com o sentido de...", options: ["Pesada", "Leve", "Clara"], correct: "Pesada", exp: "Uma atmosfera densa significa uma atmosfera pesada." },
-        { type: "choice", q: "A expressão '¡Rollo!' é usada para demonstrar...", options: ["Alegria", "Insatisfação / Chatice", "Surpresa"], correct: "Insatisfação / Chatice", exp: "Dizer '¡Qué rollo!' significa 'Que chatice!'." },
-        { type: "choice", q: "Uma piada para rir diz-se...", options: ["Chisme", "Chiste", "Broma"], correct: "Chiste", exp: "Piada = Chiste." },
-        { type: "choice", q: "Uma fofoca ou boato diz-se...", options: ["Chisme", "Chiste", "Mentira"], correct: "Chisme", exp: "Fofoca = Chisme." },
-        { type: "typing", q: "Um filme de terror muito assustador (horripilante) pode ser descrito como...", correct: ["espeluznante"], exp: "Horripilante = Espeluznante." },
-        { type: "choice", q: "Se um filme é muito 'chato' e dá sono, ele é...", options: ["Aburrido", "Divertido", "Largo"], correct: "Aburrido", exp: "Chato/Entediante = Aburrido." },
-        { type: "choice", q: "O verbo 'quedar', quando significa 'estar localizado', é sinónimo de...", options: ["Irse", "Estar ubicado", "Quedarse"], correct: "Estar ubicado", exp: "'Queda en Madrid' = 'Está ubicado en Madrid' (fica em)." },
-        
-        // Imagens 2 e 3 (Casa, Natureza, Quotidiano)
-        { type: "typing", q: "Como se diz 'A árvore' em espanhol?", correct: ["el árbol", "el arbol", "arbol", "árbol"], exp: "A árvore = El árbol." },
-        { type: "typing", q: "Como se diz 'vizinho' em espanhol?", correct: ["vecino", "el vecino"], exp: "Vizinho = Vecino." },
-        { type: "choice", q: "A 'vizinhança' traduz-se para espanhol como...", options: ["La vecindad", "El barrio", "La calle"], correct: "La vecindad", exp: "Vizinhança = La vecindad." },
-        { type: "typing", q: "Onde cultivas os teus vegetais (horta)?", correct: ["la huerta", "huerta"], exp: "Horta = La huerta." },
-        { type: "choice", q: "Como se diz 'porco' em espanhol?", options: ["Perro", "Cerdo / Puerco", "Pato"], correct: "Cerdo / Puerco", exp: "Porco diz-se 'cerdo' ou 'puerco'." },
-        { type: "choice", q: "Em Espanha, a palavra 'piso' (ou departamento) é muito usada para referir-se a um...", options: ["Chão", "Andar", "Apartamento"], correct: "Apartamento", exp: "'Piso' em Espanha é sinónimo de apartamento." },
-        { type: "typing", q: "Como se diz 'óculos' em espanhol?", correct: ["gafas", "anteojos", "las gafas", "los anteojos"], exp: "Óculos = Gafas ou Anteojos." },
-        { type: "choice", q: "Como se diz 'calçada' em espanhol?", options: ["Calle", "Vereda / Acera", "Camino"], correct: "Vereda / Acera", exp: "Calçada traduz-se por 'vereda' ou 'acera'." },
-        { type: "choice", q: "A palavra 'hecho' significa...", options: ["Acontecimento / Facto", "Pessoa", "Lugar"], correct: "Acontecimento / Facto", exp: "'El hecho' = O facto / O acontecimento." },
-        { type: "typing", q: "Traduza a palavra 'século' para espanhol:", correct: ["siglo", "el siglo"], exp: "Século = Siglo." },
-        { type: "choice", q: "A palavra 'campana' significa...", options: ["Sino", "Mas sim (conjunção)", "Campanha"], correct: "Sino", exp: "'Campana' é o sino da igreja. Não confundas com a conjunção 'sino' (mas sim)." },
-        { type: "choice", q: "A palavra 'sino' (em oposição a campana) é uma conjunção que significa...", options: ["Sino da igreja", "Mas sim", "Se não"], correct: "Mas sim", exp: "Ex: 'No es blanco, sino negro' (Não é branco, mas sim preto)." }
+        { type: "choice", q: "Atenção ao falso amigo! O que significa 'Escena'?", options: ["Jantar", "Cena de um filme", "Palco"], correct: "Cena de um filme", exp: "Escena é a cena do filme/teatro. Jantar em espanhol é 'cena'." },
+        { type: "choice", q: "A tela onde se projeta o filme no cinema chama-se...", options: ["Tela", "Pantalla", "Pizarra"], correct: "Pantalla", exp: "A tela do cinema/TV é 'pantalla'. 'Tela' em espanhol significa tecido." },
+        { type: "choice", q: "O que significa 'Chiste'?", options: ["Fofoca", "Piada", "Barulho"], correct: "Piada", exp: "Chiste = Piada. Fofoca = Chisme." },
+        { type: "typing", q: "Como se diz 'óculos' em espanhol?", correct: ["gafas", "anteojos", "las gafas"], exp: "Óculos = Gafas ou Anteojos." },
+        { type: "choice", q: "Como se diz 'calçada' em espanhol?", options: ["Calle", "Vereda / Acera", "Camino"], correct: "Vereda / Acera", exp: "Calçada = Vereda ou Acera." },
+        { type: "typing", q: "Como se diz 'bilheteria' em espanhol?", correct: ["taquilla"], exp: "Bilheteria = Taquilla." }
       ],
       conjunciones: [
         { type: "choice", q: "Qual a conjunção correta? Agujas ________ hilos.", options: ["y", "e", "u"], correct: "e", exp: "Antes de palavras iniciadas com som de 'i' ou 'hi', troca-se 'y' por 'e'." },
-        { type: "typing", q: "Completa com a conjunção correta (o / u): Siete ________ ocho.", correct: ["u"], exp: "Antes de palavras iniciadas com som de 'o' ou 'ho', troca-se 'o' por 'u'." },
-        { type: "choice", q: "Este libro no es grande, ________ pequeño. (mas sim)", options: ["pero", "sino", "porque"], correct: "sino", exp: "Sino é usado para opor e corrigir uma afirmação negativa anterior ('mas sim')." },
-        { type: "typing", q: "Completa: Estudié mucho, ________ no aprobé. (mas / porém)", correct: ["pero"], exp: "Pero significa 'mas' ou 'porém'." },
+        { type: "typing", q: "Complete com a conjunção correta (o / u): Siete ________ ocho.", correct: ["u"], exp: "Antes de palavras iniciadas com som de 'o' ou 'ho', troca-se 'o' por 'u'." },
+        { type: "choice", q: "Este libro no es grande, ________ pequeño. (mas sim)", options: ["pero", "sino", "porque"], correct: "sino", exp: "Sino é usado para opor e corrigir uma negação anterior ('mas sim')." },
+        { type: "typing", q: "Complete: Estudié mucho, ________ no aprobé. (mas / porém)", correct: ["pero"], exp: "Pero significa 'mas' ou 'porém'." },
         { type: "choice", q: "Lo hago ________ quiero. (causa)", options: ["ya que", "pero", "porque"], correct: "porque", exp: "Porque explica a causa da ação." }
       ]
     };
 
-    // Variáveis de Estado
     let currentQuiz = [];
     let currentIndex = 0;
     let selectedOrTypedValue = "";
     let mistakes = [];
-    let lives = 5;
-    let score = 0;
+    
+    let correctCount = 0;
+    let incorrectCount = 0;
 
     function quitQuiz() {
-      if(confirm("Tens a certeza que queres sair da lição?")) {
+      if(confirm("Deseja sair da lição e voltar ao manual de estudos?")) {
         document.getElementById('quiz-screen').style.display = 'none';
         document.getElementById('theory-screen').style.display = 'flex';
         document.getElementById('btn-jogar-top').style.display = 'block';
+        document.getElementById('game-stats').style.display = 'none';
         document.getElementById('feedback-panel').style.display = 'none';
       }
     }
 
     function startQuiz() {
-      // Esconder outras telas
       document.getElementById('theory-screen').style.display = 'none';
       document.getElementById('result-screen').style.display = 'none';
       document.getElementById('btn-jogar-top').style.display = 'none';
+      
       document.getElementById('quiz-screen').style.display = 'flex';
+      document.getElementById('game-stats').style.display = 'flex';
 
-      // Sorteio de 1 pergunta por categoria
       currentQuiz = [];
       mistakes = [];
-      score = 0;
-      lives = 5;
-      document.getElementById('lives-count').innerText = lives;
+      correctCount = 0;
+      incorrectCount = 0;
+      
+      document.getElementById('correct-count').innerText = correctCount;
+      document.getElementById('incorrect-count').innerText = incorrectCount;
 
       const topics = Object.keys(questionPool);
       topics.forEach(topic => {
@@ -638,9 +593,7 @@
         currentQuiz.push({ ...randomQ, topic }); 
       });
 
-      // Baralhar as perguntas
       currentQuiz = currentQuiz.sort(() => Math.random() - 0.5);
-      
       currentIndex = 0;
       loadQuestion();
     }
@@ -649,11 +602,9 @@
       const q = currentQuiz[currentIndex];
       selectedOrTypedValue = "";
       
-      // Atualizar Barra
       const progressPercent = (currentIndex / currentQuiz.length) * 100;
       document.getElementById('progress-fill').style.width = progressPercent + '%';
 
-      // Resetar Botão Verificar e Feedback
       const checkBtn = document.getElementById('check-btn');
       checkBtn.className = 'btn btn-gray';
       checkBtn.innerText = 'VERIFICAR';
@@ -661,7 +612,6 @@
       checkBtn.onclick = checkAnswer;
       document.getElementById('feedback-panel').style.display = 'none';
 
-      // Remover animação de erro anterior
       document.getElementById('quiz-screen').classList.remove('shake-anim');
 
       document.getElementById('question-text').innerText = q.q;
@@ -669,7 +619,6 @@
       container.innerHTML = '';
 
       if (q.type === "choice") {
-        // Baralhar opções localmente
         const optionsShuffled = [...q.options].sort(() => Math.random() - 0.5);
         const grid = document.createElement('div');
         grid.className = 'options-grid';
@@ -679,7 +628,6 @@
           btn.className = 'option-card';
           btn.innerText = opt;
           btn.onclick = () => {
-            // Desmarcar todos e marcar este
             Array.from(grid.children).forEach(c => c.classList.remove('selected'));
             btn.classList.add('selected');
             selectedOrTypedValue = opt;
@@ -695,14 +643,13 @@
         const input = document.createElement('input');
         input.type = 'text';
         input.className = 'typing-input';
-        input.placeholder = 'Escreve a resposta aqui...';
+        input.placeholder = 'Digite sua resposta em espanhol...';
         input.autocomplete = 'off';
         input.oninput = (e) => {
           selectedOrTypedValue = e.target.value.trim();
           if (selectedOrTypedValue.length > 0) enableCheckButton();
           else disableCheckButton();
         };
-        // Permitir dar Enter para verificar
         input.addEventListener("keypress", function(event) {
           if (event.key === "Enter" && !checkBtn.disabled) {
             event.preventDefault();
@@ -712,7 +659,6 @@
         wrap.appendChild(input);
         container.appendChild(wrap);
         
-        // Focar no input automaticamente (em desktop)
         setTimeout(() => input.focus(), 100);
       }
     }
@@ -722,6 +668,7 @@
       btn.className = 'btn btn-green';
       btn.disabled = false;
     }
+    
     function disableCheckButton() {
       const btn = document.getElementById('check-btn');
       btn.className = 'btn btn-gray';
@@ -740,7 +687,6 @@
       if (q.type === "choice") {
         isCorrect = (selectedOrTypedValue === q.correct);
       } else {
-        // Typing check (case insensitive, tolerando pequenas variações)
         const typed = selectedOrTypedValue.toLowerCase();
         isCorrect = q.correct.some(ans => ans.toLowerCase() === typed);
       }
@@ -749,23 +695,22 @@
       nextBtn.innerText = 'CONTINUAR';
 
       if (isCorrect) {
-        score++;
+        correctCount++;
+        document.getElementById('correct-count').innerText = correctCount;
+        
         panel.className = 'feedback-panel correct';
         title.innerHTML = '✔️ Correto!';
         msg.innerText = q.exp;
         nextBtn.className = 'btn btn-green';
       } else {
-        // Reduzir vida
-        lives--;
-        document.getElementById('lives-count').innerText = lives;
+        incorrectCount++;
+        document.getElementById('incorrect-count').innerText = incorrectCount;
         
-        // Animação de erro no ecrã
         const quizScreen = document.getElementById('quiz-screen');
         quizScreen.classList.remove('shake-anim');
-        void quizScreen.offsetWidth; // trigger reflow
+        void quizScreen.offsetWidth;
         quizScreen.classList.add('shake-anim');
 
-        // Adicionar tópico à lista de erros para o resumo final
         mistakes.push(q.topic);
 
         panel.className = 'feedback-panel incorrect';
@@ -775,23 +720,14 @@
         nextBtn.className = 'btn btn-red';
       }
 
-      // Esconder botão Verificar para evitar cliques múltiplos
       document.getElementById('check-btn').style.display = 'none';
-      
-      // Focar no botão Continuar para permitir 'Enter'
       setTimeout(() => nextBtn.focus(), 100);
     }
 
     function nextQuestion() {
       document.getElementById('check-btn').style.display = 'block';
-
-      if (lives <= 0) {
-        alert("Ficaste sem vidas! A tua lição foi interrompida.");
-        location.reload();
-        return;
-      }
-
       currentIndex++;
+      
       if (currentIndex >= currentQuiz.length) {
         showResultScreen();
       } else {
@@ -802,10 +738,10 @@
     function showResultScreen() {
       document.getElementById('quiz-screen').style.display = 'none';
       document.getElementById('feedback-panel').style.display = 'none';
+      document.getElementById('game-stats').style.display = 'none';
       document.getElementById('result-screen').style.display = 'flex';
-      document.getElementById('btn-jogar-top').style.display = 'none';
 
-      document.getElementById('score-text').innerText = `${score} de ${currentQuiz.length}`;
+      document.getElementById('score-text').innerText = `${correctCount} de ${currentQuiz.length}`;
 
       const diagArea = document.getElementById('diagnostic-area');
       diagArea.innerHTML = '';
@@ -813,20 +749,19 @@
       if (mistakes.length === 0) {
         diagArea.innerHTML = `
           <div class="diagnostic-box" style="border-color: var(--green);">
-            <h3 style="color: var(--green); text-align:center;">🏆 Perfeito!</h3>
-            <p style="text-align:center;">Dominaste completamente todos os tópicos da prova! Não erraste nenhuma questão.</p>
+            <h3 style="color: var(--green); text-align:center;">🏆 Desempenho Perfeito!</h3>
+            <p style="text-align:center;">Você dominou todos os conteúdos sorteados nesta rodada!</p>
           </div>
         `;
       } else {
-        // Remover duplicados da lista de erros
         const uniqueMistakes = [...new Set(mistakes)];
         
         const explanations = {
-          imperfecto: "<strong>Pretérito Imperfeito:</strong> Precisas de rever as terminações regulares (-aba, -ía) e memorizar os 3 irregulares (Ir, Ser, Ver).",
-          indefinido: "<strong>Pretérito Indefinido:</strong> Foca-te na conjugação de ações concluídas no passado e nos irregulares importantes (Hacer, Ser/Ir, Tener).",
-          contraste: "<strong>Contraste entre Pretéritos:</strong> Lembra-te: o Imperfecto faz o cenário (o que estava a acontecer), o Indefinido é a ação pontual que corta a cena.",
-          vocabulario: "<strong>Vocabulário:</strong> Tens de rever os termos de cinema/teatro e prestar muita atenção aos Falsos Amigos das tuas notas (ex: cena vs escena, pantalla vs tela, chiste vs chisme).",
-          conjunciones: "<strong>Conjunções:</strong> Presta atenção nas regras de troca fonética (y->e, o->u) e na diferença entre 'pero' (mas) e 'sino' (mas sim, para corrigir negações)."
+          imperfecto: "<strong>Pretérito Imperfeito:</strong> Revise as terminações -aba e -ía (inclusive para Vosotros: -abais, -íais) e os irregulares (Ir, Ser, Ver).",
+          indefinido: "<strong>Pretérito Indefinido:</strong> Revise as terminações de ações pontuais (incluindo Vosotros: -asteis, -isteis) e os verbos irregulares.",
+          contraste: "<strong>Contraste entre Pretéritos:</strong> Lembre-se: Imperfecto dá o contexto contínuo; Indefinido é a interrupção pontual.",
+          vocabulario: "<strong>Vocabulário:</strong> Dê atenção aos falsos amigos das 3 etapas (escena vs cena, pantalla vs tela, chiste vs chisme).",
+          conjunciones: "<strong>Conjunções:</strong> Lembre-se das trocas fonéticas (y->e, o->u) e do uso de 'sino' para correções adversativas."
         };
 
         let ulHTML = "<ul>";
@@ -837,7 +772,7 @@
 
         diagArea.innerHTML = `
           <div class="diagnostic-box">
-            <h3>⚠️ O que precisas de melhorar:</h3>
+            <h3>⚠️ Pontos a revisar para a prova:</h3>
             ${ulHTML}
           </div>
         `;
